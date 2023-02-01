@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pages"
+    "\\pages",
+    "\\src"
   ],
-  "SelectedNode": "\\pages\\taxi.html",
+  "SelectedNode": "\\index.html",
   "PreviewInSolutionExplorer": false
 }
