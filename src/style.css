@@ -15,11 +15,14 @@ p{
 
 section{
     background-color: #2f3e46;
+    border-radius: 25px;
 }
 
 .block{
     background-color: #cad2c5;
-    border-radius: 10px;
+    border-radius: 25px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 .flex{
     display: flex;
