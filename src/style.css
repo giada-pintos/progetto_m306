@@ -13,10 +13,10 @@ p{
 
 }
 
-div{
-    background-color: #cad2c5;
-}
-
 section{
     background-color: #2f3e46;
+}
+
+.block{
+    background-color: #cad2c5;
 }
