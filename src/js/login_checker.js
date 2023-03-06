@@ -1,14 +1,44 @@
+//dichiaro il mio form con utente e password
+const form = document.querySelector('form');
+if (typeof userData === 'undefined') {
+    var userData = undefined;
+}
+
+//errore aggiunto al form
+var errorLabel = document.createElement("label");
+errorLabel.innerHTML = "";
+form.appendChild(errorLabel);
+
 //Cattura dati dal json
-fetch('https://api.npoint.io/1853f3e2c5fc0070977e')
+fetch('https://api.npoint.io/ebb6154cdc4d23b566ba')
     .then(response => response.json())
     .then(data => {
-        const form = document.querySelector('form');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+
+            //faccio il get del first e lastname
             const firstName = document.querySelector('#firstName').value;
             const lastName = document.querySelector('#lastName').value;
-            console.log(data.users)
-            console.log(checkUserExists(data, firstName, lastName));
+            checkUserExists(data, firstName, lastName);
+
+            //controllo se l'utente esiste
+            if (checkUserExists(data, firstName, lastName)) {
+                errorLabel.innerHTML = "";
+
+                //controllo se taxista oppure cliente
+                if (userData.isTaxi) {
+                    window.location = "../../pages/taxiUC.html";
+
+                }
+                else if (!userData.isTaxi) {
+                    window.location = "../../pages/clientiUC.html";
+
+                }
+            }
+            else {
+                errorLabel.innerHTML = "Password o Nome utente errati.";
+                errorLabel.style.color = "red";
+            }
         });
     });
 
@@ -17,29 +47,14 @@ fetch('https://api.npoint.io/1853f3e2c5fc0070977e')
 function checkUserExists(data, firstName, lastName) {
     const foundUser = data.users.find(user => user.firstName === firstName && user.lastName === lastName);
     if (data.users.some(user => user.firstName === firstName && user.lastName === lastName)) {
-        const instance = Singleton.getInstance(foundUser);
-        console.log(instance.userData);
+
+        //istanzio l'utente come SINGLETON per tutta la sessione
+        localStorage.setItem('userData', JSON.stringify(foundUser));
+        userData = JSON.parse(localStorage.getItem('userData'));
+
         return true;
     }
     return false;
 }
 
 
-//Singleton per avere un utente per tutta la sessione
-const Singleton = (function () {
-    let instance;
-
-    function createInstance(userData) {
-        const object = new Object({ userData: userData });
-        return object;
-    }
-
-    return {
-        getInstance: function (userData) {
-            if (!instance) {
-                instance = createInstance(userData);
-            }
-            return instance;
-        }
-    };
-})();
