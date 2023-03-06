@@ -1,16 +1,36 @@
 <html>
-    <head>
-        <title>Taxi App</title>
-        <link rel="stylesheet" href="src/style.css">
-    </head>
-    <body>
-        <section>
-            <h1>Progetto m306 "The taxi app"</h1>
+<head>
+    <title>Taxi App</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/menu.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+<body onload="startUp()">
+
+
+    <!--MENU-->
+    <div id="container"></div>
+
+
+    <section class="content">
+        <h1>Progetto m306 "The taxi app"</h1>
         <div class="block">
             <p>Siamo un gruppo di giovani studenti della CPT di Locarno</p>
-            <a href="/pages/authentication/login">Login</a>
-        </div>
-        </section>
+            <button onclick="window.location.href = 'pages/authentication/login.html';" class="log">Login</button>
+            <button onclick="window.location.href = 'pages/authentication/login.html';" class="reg">Sign up</button>
 
-    </body>
+        </div>
+    </section>
+
+
+
+    <!--SCRIPT-->
+    <script type="text/javascript" src="src/js/onload_index.js"></script>
+    <script type="text/javascript" src="src/js/menu.js"></script>
+
+
+
+
+</body>
 </html>
