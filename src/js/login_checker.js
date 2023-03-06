@@ -10,7 +10,7 @@ errorLabel.innerHTML = "";
 form.appendChild(errorLabel);
 
 //Cattura dati dal json
-fetch('https://api.npoint.io/ebb6154cdc4d23b566ba')
+fetch('data.json')
     .then(response => response.json())
     .then(data => {
         form.addEventListener('submit', (event) => {
