@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "isTaxi": true,
+      "userld": 1,
+      "lastName": "",
+      "firstName": "",
+      "phoneNumber": "555-555-5555",
+      "emailAddress": "clee@fileinfo.com"
+    },
+    {
+      "isTaxi": false,
+      "userld": 2,
+      "lastName": "Jackson",
+      "firstName": "Action",
+      "phoneNumber": "555-555-5556",
+      "emailAddress": "ajackson@fileinfo.com"
+    },
+    {
+      "isTaxi": false,
+      "userld": 3,
+      "lastName": "Bing",
+      "firstName": "Ross",
+      "phoneNumber": "555-555-5557",
+      "emailAddress": "rbing@fileinfo.com"
+    },
+    {
+      "isTaxi": false,
+      "userld": 4,
+      "lastName": "Reeves",
+      "firstName": "David",
+      "phoneNumber": "555-555-5558",
+      "emailAddress": "dreeves@fileinfo.com"
+    },
+    {
+      "isTaxi": false,
+      "userld": 5,
+      "lastName": "Mac",
+      "firstName": "Josie",
+      "phoneNumber": "555-555-5559",
+      "emailAddress": "jmac@fileinfo.com"
+    }
+  ]
+}
