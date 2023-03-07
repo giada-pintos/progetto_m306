@@ -8,7 +8,7 @@ if (typeof userData === 'undefined') {
     link = "pages/authentication/login.html";
     account = "Login";
 }
-else if (userData.isTaxi) {
+else if (userData.isTaxi === true) {
     account = "Taxi";
     link = "pages/taxiUC.html";
 }
@@ -18,7 +18,7 @@ else {
 }
 
 // Selezioniamo l'elemento <div> con id "container"
-var container = document.getElementById("container");
+var menu = document.getElementById("menu");
 
 // Definiamo il codice HTML da inserire
 var html = `
@@ -36,8 +36,8 @@ var html = `
         </div>
 `;
 
-// Inseriamo il codice HTML nell'elemento <div> con id "container"
-container.innerHTML = html;
+// Inseriamo il codice HTML nell'elemento <div> con id "menu"
+menu.innerHTML = html;
 
 
 $(".navT").on("click", function () {
