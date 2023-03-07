@@ -1,7 +1,8 @@
 
 //menu apposito per il tipo di cliente che sei
 var link = "authentication/login.html";
-var account = "";
+var account = ""; 
+var userData;
 if (typeof userData === 'undefined') {
     account = "Login";
 }
