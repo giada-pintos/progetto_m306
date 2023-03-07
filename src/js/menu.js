@@ -18,7 +18,7 @@ else {
 }
 
 // Selezioniamo l'elemento <div> con id "container"
-var menu = document.getElementById("menu");
+var containerMenu = document.getElementById("containerMenu");
 
 // Definiamo il codice HTML da inserire
 var html = `
@@ -36,8 +36,8 @@ var html = `
         </div>
 `;
 
-// Inseriamo il codice HTML nell'elemento <div> con id "menu"
-menu.innerHTML = html;
+// Inseriamo il codice HTML nell'elemento <div> con id "containerMenu"
+containerMenu.innerHTML = html;
 
 
 $(".navT").on("click", function () {
