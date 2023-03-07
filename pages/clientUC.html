@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,26 +10,55 @@
     <link rel="stylesheet" href="/src/menu.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body onload="startUp()">
     <!--MENU-->
-    <div id="container"></div>
+    <div id="containerMenu"></div>
 
-    <div class="reservation">
-        <h2>Book a Ride</h2>
-        <form>
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required>
-          <label for="pickup">Pick-up Address:</label>
-          <input type="text" id="pickup" name="pickup" required>
-          <div id="map"></div>
-          <button type="submit">Book Ride</button>
-        </form>
-      </div>
+    <label for="pickup-address">Pick-up Address:</label>
+    <input type="text" id="pickup-address">
 
+    <button id="search-button">Search</button>
+
+    <div id="map"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#search-button').on('click', function () {
+                var pickupAddress = $('#pickup-address').val();
+                var url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(pickupAddress) + '&format=json&limit=1';
+
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            var lat = data[0].lat;
+                            var lon = data[0].lon;
+
+                            // Do something with the latitude and longitude coordinates, such as displaying them on a map
+                            var map = L.map('map').setView([lat, lon], 13);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                                maxZoom: 18
+                            }).addTo(map);
+                            L.marker([lat, lon]).addTo(map);
+                        } else {
+                            alert('No results found.');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('Error searching for pick-up address: ' + textStatus + ' ' + errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 
     <!--SCRIPT-->
     <script type="text/javascript" src="/src/js/menu.js"></script>
     <script type="text/javascript" src="/src/js/onload_index.js"></script>
 
 </body>
+
 </html>
