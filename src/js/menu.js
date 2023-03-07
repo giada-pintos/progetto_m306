@@ -2,7 +2,7 @@
 //menu apposito per il tipo di cliente che sei
 var link = "authentication/login.html";
 var account = "";
-if (typeof userData === null) {
+if (typeof userData === 'undefined') {
     account = "Login";
 }
 else if (userData.isTaxi) {
