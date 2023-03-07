@@ -3,7 +3,9 @@
 var link = "authentication/login.html";
 var account = ""; 
 var userData = Array;
+
 if (typeof userData === 'undefined') {
+    link = "pages/authentication/login.html";
     account = "Login";
 }
 else if (userData.isTaxi) {
