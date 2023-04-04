@@ -61,24 +61,24 @@ button {
     margin: 10px 10px;
     width: 200px;
     padding: 10px 0;
-    box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+    box-shadow: 0 0 20px #2f3e46;
     transition: 0.4s;
 }
 
 .reg {
     color: white;
-    background-color: rgba(104, 85, 224, 1);
+    background-color: #2f3e46;
 }
 
 .log {
-    color: rgb(104, 85, 224);
+    color: #2f3e46;
     background-color: rgba(255, 255, 255, 1);
-    border: 1px solid rgba(104, 85, 224, 1);
+    border: 1px solid #2f3e46;
 }
 
 button:hover {
     color: white;
     width: 200px;
-    box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
-    background-color: rgba(104, 85, 224, 1);
+    box-shadow: 0 0 20px #2f3e46;
+    background-color: #2f3e46;
 }
