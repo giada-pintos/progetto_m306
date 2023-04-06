@@ -74,7 +74,9 @@ li a {
 }
 
 .block button {
-    margin-left: 100px;
+    margin-left: 280px;
+    margin-top: 15px;
+    margin-bottom: 50px;
     border-radius: 25px;
 }
 
