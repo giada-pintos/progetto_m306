@@ -1,8 +1,9 @@
 #container {
-    z-index: 111;
+    /* z-index: 111; */
 }
 
 .navT {
+    margin-bottom: 20px;
     border-radius: 25px;
     -webkit-transition: all 0.25s;
     z-index: 111;
