@@ -38,8 +38,6 @@ p {
 }
 
 .block {
-    margin-left: 10px;
-    margin-right: 10px;
     background-color: #cad2c5;
     border-radius: 25px;
 }
@@ -49,6 +47,7 @@ p {
 }
 
 .content {
+    margin-left: 10px;
     position: absolute;
     top: 65px;
 }
