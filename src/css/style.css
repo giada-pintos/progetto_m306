@@ -16,6 +16,12 @@ section {
     background-color: #2f3e46;
     border-radius: 25px;
 }
+footer {
+    width: 96%;
+    margin-top: 10px;
+    background-color: #2f3e46;
+    border-radius: 25px;
+}
 
 h1 {
     margin-right: 10px;
@@ -47,7 +53,6 @@ p {
 }
 
 .content {
-    margin-left: 10px;
     position: absolute;
     top: 65px;
 }
