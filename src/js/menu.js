@@ -18,7 +18,7 @@ else {
 }
 
 // Selezioniamo l'elemento <div> con id "container"
-var containerMenu = document.getElementById("containerMenu");
+var containerMenu = document.getElementById("container");
 
 // Definiamo il codice HTML da inserire
 var html = `
