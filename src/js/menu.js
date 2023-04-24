@@ -6,15 +6,15 @@ try {
     var userData = JSON.parse(localStorage.getItem('userData'));
     if (userData.isTaxi === true) {
         account = "Taxi";
-        link = "pages/taxiUC.html";
+        link = "../../pages/taxiUC.html";
     }
     else if (userData.isTaxi === false) {
         account = "Cliente";
-        link = "pages/clientiUC.html";
+        link = "../../pages/clientiUC.html";
     }
 }
 catch (ex) {
-    link = "pages/authentication/login.html";
+    link = "../../pages/authentication/login.html";
     account = "Login";
 }
 
