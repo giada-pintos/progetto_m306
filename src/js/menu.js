@@ -12,7 +12,7 @@ else if (userData.isTaxi === true) {
     account = "Taxi";
     link = "pages/taxiUC.html";
 }
-else {
+else if (userData.isTaxi === false) {
     account = "Cliente";
     link = "pages/clientiUC.html";
 }
