@@ -1,21 +1,26 @@
 
 //menu apposito per il tipo di cliente che sei
 var link = "authentication/login.html";
-var account = ""; 
-var userData = Array;
-
-if (typeof userData === 'undefined') {
+var account = "";
+try {
+    var userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData.isTaxi === true) {
+        account = "Taxi";
+        link = "pages/taxiUC.html";
+    }
+    else if (userData.isTaxi === false) {
+        account = "Cliente";
+        link = "pages/clientiUC.html";
+    }
+}
+catch (ex) {
     link = "pages/authentication/login.html";
     account = "Login";
 }
-else if (userData.isTaxi === true) {
-    account = "Taxi";
-    link = "pages/taxiUC.html";
-}
-else if (userData.isTaxi === false) {
-    account = "Cliente";
-    link = "pages/clientiUC.html";
-}
+
+
+
+
 
 // Selezioniamo l'elemento <div> con id "container"
 var containerMenu = document.getElementById("containerMenu");
