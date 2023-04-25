@@ -14,7 +14,7 @@
             width: 100%;
         }
 
-        label{
+        label {
             color: white;
         }
     </style>
@@ -44,8 +44,8 @@
     </section>
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
-            async></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
+            async></script>-->
     <script>
 
         var map, geocoder, start, end;
@@ -118,7 +118,7 @@
                     var distanza = result.routes[0].legs[0].distance.text;
                     var tempo = result.routes[0].legs[0].duration.text;
                     var prezzo_partenza = 20;
-                    var prezzo = prezzo_partenza + ( parseFloat(distanza) * 2.8);
+                    var prezzo = prezzo_partenza + (parseFloat(distanza) * 2.8);
 
                     document.getElementById("indicazioni").innerHTML =
                         "<h3>Distanza: " +
@@ -128,7 +128,7 @@
                         "<br>Prezzo: " +
                         prezzo + " CHF" +
                         "</h3>" +
-                    "<button onclick=availabilityCheck()>Controlla disponibilita</button>" + "<button id=prenotazioneBtn onclick=prenota() disabled>Prenota Corsa</button>"
+                        "<button onclick=availabilityCheck()>Controlla disponibilita</button>" + "<button id=prenotazioneBtn onclick=prenota() disabled>Prenota Corsa</button>"
                         ;
                 }
             });
