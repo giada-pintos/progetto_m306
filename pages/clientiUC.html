@@ -116,7 +116,8 @@
 
                     var distanza = result.routes[0].legs[0].distance.text;
                     var tempo = result.routes[0].legs[0].duration.text;
-                    var prezzo = parseFloat(distanza) * 1.4;
+                    var prezzo_partenza = 20;
+                    var prezzo = prezzo_partenza + ( parseFloat(distanza) * 2.8);
 
                     document.getElementById("indicazioni").innerHTML =
                         "<h3>Distanza: " +
@@ -124,7 +125,7 @@
                         "<br>Tempo di percorrenza: " +
                         tempo +
                         "<br>Prezzo: " +
-                        prezzo +
+                        prezzo + " CHF" +
                         "</h3>"
                         ;
                 }
