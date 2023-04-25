@@ -27,4 +27,4 @@ function startUp(user) {
     return interval;
 }
 
-const intervalId = updatePosition(userData);
+const intervalId = startUp(userData);
