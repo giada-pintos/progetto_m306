@@ -149,11 +149,15 @@
                         var singleTaxist = document.createElement("section");
                         const text = document.createElement("h2");
                         const status = document.createElement("h2");
-                        
-                        status.textContent = `LIBERO  `;
+
+                        //status
+                        status.textContent = `LIBERO      `;
                         status.setAttribute("align", "right");
                         status.style.color = 'green';
+
+                        //contenuto della piccola box
                         text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+
                         //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
                         singleTaxist.setAttribute("class", "availableTaxi");
                         singleTaxist.appendChild(text);
