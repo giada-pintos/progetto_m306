@@ -149,6 +149,7 @@
                         var singleTaxist = document.createElement("section");
                         const li = document.createElement("li");
                         li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+                        singleTaxist.setAttribute("class", "content");
                         singleTaxist.appendChild(li);
                         myTaxist.appendChild(singleTaxist);
                     });
