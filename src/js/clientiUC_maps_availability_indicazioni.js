@@ -1,0 +1,161 @@
+var map, geocoder, start, end;
+
+function initMap() {
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer();
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 7,
+    center: { lat: 46.97447029890155, lng: 8.248959611213872 },
+  });
+  directionsRenderer.setMap(map);
+
+  var autocompleteStart = new google.maps.places.Autocomplete(
+    document.getElementById("start")
+  );
+  var autocompleteEnd = new google.maps.places.Autocomplete(
+    document.getElementById("end")
+  );
+
+
+  map.addListener("click", function (event) {
+    // Crea il link con la posizione di partenza e destinazione scelte dall'utente
+    var start = document.getElementById("start").value;
+    var end = document.getElementById("end").value;
+    var link =
+      "https://www.google.com/maps/dir/?api=1&" +
+      "origin=" +
+      encodeURI(start) +
+      "&destination=" +
+      encodeURI(end) +
+      "&travelmode=driving";
+
+    // Apri l'applicazione Google Maps con il link creato
+    if (start != "" && end != "") {
+      window.open(link);
+    }
+  });
+}
+
+
+
+
+
+
+function calcolaIndicazioni() {
+  start = document.getElementById("start").value;
+  end = document.getElementById("end").value;
+
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: "blue",
+    },
+  });
+
+  directionsRenderer.setMap(map);
+
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: "DRIVING",
+  };
+
+  directionsService.route(request, function (result, status) {
+    if (status == "OK") {
+      directionsRenderer.setDirections(result);
+
+      var distanza = result.routes[0].legs[0].distance.text;
+      var tempo = result.routes[0].legs[0].duration.text;
+      var prezzo_partenza = 20;
+      var prezzo = prezzo_partenza + (parseFloat(distanza) * 2.8);
+
+      document.getElementById("indicazioni").innerHTML =
+        "<h3>Distanza: " +
+        distanza +
+        "<br>Tempo di percorrenza: " +
+        tempo +
+        "<br>Prezzo: " +
+        prezzo + " CHF" +
+        "</h3>" +
+        "<button onclick=availabilityCheck()>Controlla disponibilita</button>" + "<button id=prenotazioneBtn onclick=prenota() disabled>Prenota Corsa</button>"
+        ;
+    }
+  });
+}
+
+
+function availabilityCheck() {
+  var myTaxist = document.getElementById("availableTaxi");
+  myTaxist.innerHTML = "";
+
+  fetch('/data.json')
+    .then(response => response.json())
+    .then(data => {
+      const taxiUsers = data.users.filter(user => user.isTaxi === true && user.status === 1);
+
+      if (taxiUsers.length > 0) {
+        taxiUsers.forEach(user => {
+          //creazione di una sezione per ogni tassista disponibile
+          var singleTaxist = document.createElement("section");
+          const text = document.createElement("h2");
+          const status = document.createElement("h2");
+
+          //status
+          status.textContent = `LIBERO`;
+          status.setAttribute("align", "right");
+          status.style.color = 'green';
+
+          //contenuto della piccola box
+          text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+
+          //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
+          singleTaxist.setAttribute("class", "availableTaxi");
+          singleTaxist.appendChild(text);
+          singleTaxist.appendChild(document.createElement("br"));
+          singleTaxist.appendChild(status);
+          myTaxist.appendChild(singleTaxist);
+        });
+
+        document.getElementById("prenotazioneBtn").disabled = false;
+
+      }
+      else {
+        document.getElementById("prenotazioneBtn").disabled = true;
+
+      }
+    })
+    .catch(error => console.error(error));
+}
+
+
+
+function prenota() {
+
+}
+
+
+
+function usaPosizioneCorrente() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      geocoder.geocode({ location: pos }, function (results, status) {
+        if (status === "OK") {
+          if (results[0]) {
+            document.getElementById("start").value = results[0].formatted_address;
+          } else {
+            window.alert("Nessun risultato trovato");
+          }
+        } else {
+          window.alert("Geocoder fallito: " + status);
+        }
+      });
+    });
+  } else {
+    window.alert("Geolocalizzazione non supportata da questo browser");
+  }
+}
