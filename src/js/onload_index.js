@@ -3,7 +3,7 @@ var userData = JSON.parse(localStorage.getItem('userData'));
 
 
 
-function updatePosition() {
+function startUp() {
 
     // inizializza l'API di Google Maps
     const mapsApiKey = 'AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE';
