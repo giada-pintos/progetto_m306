@@ -150,9 +150,7 @@
                         section.setAttribute("class", "content");
                         const li = document.createElement("li");
                         li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
-                        section.appendChild(li);
-                        myTaxist.appendChild(section);
-
+                        myTaxist.appendChild(li);
                     });
                 })
                 .catch(error => console.error(error));
