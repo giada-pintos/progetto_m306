@@ -40,6 +40,7 @@
         <br><br>
         <div id="map"></div>
         <div id="indicazioni"></div>
+        <div id="availableTaxi"></div>
     </section>
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
@@ -127,7 +128,7 @@
                         "<br>Prezzo: " +
                         prezzo + " CHF" +
                         "</h3>" +
-                        "<button onclick=availabilityCheck()>Controlla disponibilità</button>"
+                        "<button onclick=availabilityCheck()>Controlla disponibilita</button>" 
                         ;
                 }
             });
@@ -135,7 +136,18 @@
 
 
         function availabilityCheck() {
-            alert("ciao");
+
+            var myTaxist = document.getElementById("availableTaxi");
+            myTaxist.innerHTML = "";
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const taxiUsers = data.users.filter(user => user.isTaxi);
+                    console.log(taxiUsers);
+                    myTaxist.appendChild(taxiUsers);
+                })
+                .catch(error => console.error(error));
+
 
         }
 

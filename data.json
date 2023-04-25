@@ -1,4 +1,8 @@
 {
+  //status 0 = occupato
+  //status 1 = disponibile
+  //currentPosition è un valore che viene continuamente aggiornato
+
   "users": [
     {
       "isTaxi": true,
@@ -6,23 +10,34 @@
       "lastName": "",
       "firstName": "",
       "phoneNumber": "555-555-5555",
-      "emailAddress": "clee@fileinfo.com"
+      "emailAddress": "clee@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car" :  "Mercedes Benz Viano"
     },
     {
-      "isTaxi": false,
+      "isTaxi": true,
       "userld": 2,
       "lastName": "Jackson",
       "firstName": "Action",
       "phoneNumber": "555-555-5556",
-      "emailAddress": "ajackson@fileinfo.com"
+      "emailAddress": "ajackson@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Balerna",
+      "car": "BMW X5"
+
     },
     {
-      "isTaxi": false,
+      "isTaxi": true,
       "userld": 3,
       "lastName": "Bing",
       "firstName": "Ross",
       "phoneNumber": "555-555-5557",
-      "emailAddress": "rbing@fileinfo.com"
+      "emailAddress": "rbing@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Morbio",
+      "car": "Skoda Octavia"
+
     },
     {
       "isTaxi": false,
@@ -30,7 +45,11 @@
       "lastName": "Reeves",
       "firstName": "David",
       "phoneNumber": "555-555-5558",
-      "emailAddress": "dreeves@fileinfo.com"
+      "emailAddress": "dreeves@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car": "Skoda Octavia"
+
     },
     {
       "isTaxi": false,
@@ -38,7 +57,11 @@
       "lastName": "Mac",
       "firstName": "Josie",
       "phoneNumber": "555-555-5559",
-      "emailAddress": "jmac@fileinfo.com"
+      "emailAddress": "jmac@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car": "Skoda Octavia"
+
     }
   ]
 }
