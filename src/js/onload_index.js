@@ -5,12 +5,6 @@ var userData = JSON.parse(localStorage.getItem('userData'));
 
 function startUp() {
 
-    // inizializza l'API di Google Maps
-    const mapsApiKey = 'AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE';
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${mapsApiKey}&libraries=places`;
-    document.body.appendChild(script);
-
     // definisci la funzione per ottenere la posizione attuale
     function getCurrentPosition() {
         return new Promise((resolve, reject) => {
