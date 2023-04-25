@@ -116,12 +116,16 @@
 
                     var distanza = result.routes[0].legs[0].distance.text;
                     var tempo = result.routes[0].legs[0].duration.text;
+                    var prezzo = parseFloat(distanza) * 1.4;
 
                     document.getElementById("indicazioni").innerHTML =
-                        "<h3>Distanza:" +
+                        "<h3>Distanza: " +
                         distanza +
                         "<br>Tempo di percorrenza: " +
                         tempo +
+                        "</h3>"
+                        "<br>Prezzo: " +
+                        prezzo +
                         "</h3>"
                         ;
                 }
