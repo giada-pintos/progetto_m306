@@ -147,10 +147,11 @@
                     taxiUsers.forEach(user => {
                         //creazione di una sezione per ogni tassista disponibile
                         var singleTaxist = document.createElement("section");
-                        const li = document.createElement("li");
-                        li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+                        const text = document.createElement("h2");
+                        text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+                        //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
                         singleTaxist.setAttribute("class", "availableTaxi");
-                        singleTaxist.appendChild(li);
+                        singleTaxist.appendChild(text);
                         myTaxist.appendChild(singleTaxist);
                     });
                 })
