@@ -47,7 +47,7 @@
             async></script>
     <script>
 
-        var map, geocoder;
+        var map, geocoder, start, end;
 
         function initMap() {
             var directionsService = new google.maps.DirectionsService();
@@ -92,13 +92,13 @@
 
 
         function calcolaIndicazioni() {
-            var start = document.getElementById("start").value;
-            var end = document.getElementById("end").value;
+            start = document.getElementById("start").value;
+            end = document.getElementById("end").value;
 
             var directionsService = new google.maps.DirectionsService();
             var directionsRenderer = new google.maps.DirectionsRenderer({
                 polylineOptions: {
-                    strokeColor: "red",
+                    strokeColor: "blue",
                 },
             });
 
@@ -127,10 +127,16 @@
                         "<br>Prezzo: " +
                         prezzo + " CHF" +
                         "</h3>" +
-                        "<button onclick=prenotaCorsa()>Prenota corsa</button>"
+                        "<button onclick=availabilityCheck()>Controlla disponibilità</button>"
                         ;
                 }
             });
+        }
+
+
+        function availabilityCheck() {
+            alert("ciao");
+
         }
 
 
