@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\pages",
+    "\\src",
+    "\\src\\css",
+    "\\src\\js"
   ],
-  "SelectedNode": "\\C:\\Users\\0sheabd\\Source\\Repos\\progetto_m306",
+  "SelectedNode": "\\pages",
   "PreviewInSolutionExplorer": false
 }
