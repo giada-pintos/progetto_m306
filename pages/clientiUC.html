@@ -137,6 +137,7 @@
 
         function availabilityCheck() {
             var myTaxist = document.getElementById("availableTaxi");
+            const section = document.createElement("section");
             myTaxist.innerHTML = "";
 
             fetch('/data.json')
@@ -146,7 +147,6 @@
 
                     taxiUsers.forEach(user => {
                         //creazione di una sezione per ogni tassista disponibile
-                        const section = document.createElement("section");
                         section.setAttribute("class", "content");
                         const li = document.createElement("li");
                         li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
