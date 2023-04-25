@@ -9,7 +9,7 @@ function startUp() {
     const mapsApiKey = 'AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE';
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${mapsApiKey}&libraries=places`;
-    document.head.appendChild(script);
+    document.body.appendChild(script);
 
     // definisci la funzione per ottenere la posizione attuale
     function getCurrentPosition() {
