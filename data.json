@@ -1,8 +1,4 @@
 {
-  //status 0 = occupato
-  //status 1 = disponibile
-  //currentPosition è un valore che viene continuamente aggiornato
-
   "users": [
     {
       "isTaxi": true,
@@ -13,7 +9,7 @@
       "emailAddress": "clee@fileinfo.com",
       "status": 1,
       "currentPosition": "Chiasso",
-      "car" :  "Mercedes Benz Viano"
+      "car": "Mercedes Benz Viano"
     },
     {
       "isTaxi": true,
@@ -25,7 +21,6 @@
       "status": 1,
       "currentPosition": "Balerna",
       "car": "BMW X5"
-
     },
     {
       "isTaxi": true,
@@ -37,7 +32,6 @@
       "status": 1,
       "currentPosition": "Morbio",
       "car": "Skoda Octavia"
-
     },
     {
       "isTaxi": false,
@@ -49,7 +43,6 @@
       "status": 1,
       "currentPosition": "Chiasso",
       "car": "Skoda Octavia"
-
     },
     {
       "isTaxi": false,
@@ -61,7 +54,6 @@
       "status": 1,
       "currentPosition": "Chiasso",
       "car": "Skoda Octavia"
-
     }
   ]
 }
