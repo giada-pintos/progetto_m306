@@ -16,19 +16,20 @@
     <!--MENU-->
     <div id="containerMenu"></div>
 
-
-    <h3>Inserisci la posizione di partenza e la destinazione:</h3>
-    <label for="start">Posizione di partenza:</label>
-    <input type="text" id="start" placeholder="Inserisci la posizione di partenza">
-    <button onclick="usaPosizioneCorrente()">Mia posizione</button>
-    <br><br>
-    <label for="end">Destinazione:</label>
-    <input type="text" id="end" placeholder="Inserisci la destinazione">
-    <br><br>
-    <button onclick="calcolaIndicazioni()">Invia</button>
-    <br><br>
-    <div id="map"></div>
-    <div id="indicazioni"></div>
+    <section class="content">
+        <h3>Inserisci la posizione di partenza e la destinazione:</h3>
+        <label for="start">Posizione di partenza:</label>
+        <input type="text" id="start" placeholder="Inserisci la posizione di partenza">
+        <button onclick="usaPosizioneCorrente()">Mia posizione</button>
+        <br><br>
+        <label for="end">Destinazione:</label>
+        <input type="text" id="end" placeholder="Inserisci la destinazione">
+        <br><br>
+        <button onclick="calcolaIndicazioni()">Invia</button>
+        <br><br>
+        <div id="map"></div>
+        <div id="indicazioni"></div>
+    </section>
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE&callback=initMap&libraries=places"
@@ -146,6 +147,7 @@
     <!--SCRIPT-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../src/js/menu.js"></script>
+    <script type="text/javascript" src="../src/js/onload_index.js"></script>
 
 </body>
 
