@@ -136,20 +136,23 @@
 
 
         function availabilityCheck() {
-
             var myTaxist = document.getElementById("availableTaxi");
             myTaxist.innerHTML = "";
+
             fetch('/data.json')
                 .then(response => response.json())
                 .then(data => {
                     const taxiUsers = data.users.filter(user => user.isTaxi);
-                    console.log(taxiUsers);
-                    myTaxist.appendChild(taxiUsers);
+
+                    taxiUsers.forEach(user => {
+                        const li = document.createElement("li");
+                        li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+                        myTaxist.appendChild(li);
+                    });
                 })
                 .catch(error => console.error(error));
-
-
         }
+
 
 
         function usaPosizioneCorrente() {
