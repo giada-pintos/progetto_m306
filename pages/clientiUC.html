@@ -128,7 +128,7 @@
                         "<br>Prezzo: " +
                         prezzo + " CHF" +
                         "</h3>" +
-                        "<button onclick=availabilityCheck()>Controlla disponibilita</button>" 
+                    "<button onclick=availabilityCheck()>Controlla disponibilita</button>" + "<button id=prenotazioneBtn onclick=prenota() disabled>Prenota Corsa</button>"
                         ;
                 }
             });
@@ -144,27 +144,36 @@
                 .then(data => {
                     const taxiUsers = data.users.filter(user => user.isTaxi === true && user.status === 1);
 
-                    taxiUsers.forEach(user => {
-                        //creazione di una sezione per ogni tassista disponibile
-                        var singleTaxist = document.createElement("section");
-                        const text = document.createElement("h2");
-                        const status = document.createElement("h2");
+                    if (taxiUsers.length > 0) {
+                        taxiUsers.forEach(user => {
+                            //creazione di una sezione per ogni tassista disponibile
+                            var singleTaxist = document.createElement("section");
+                            const text = document.createElement("h2");
+                            const status = document.createElement("h2");
 
-                        //status
-                        status.textContent = `LIBERO`;
-                        status.setAttribute("align", "right");
-                        status.style.color = 'green';
+                            //status
+                            status.textContent = `LIBERO`;
+                            status.setAttribute("align", "right");
+                            status.style.color = 'green';
 
-                        //contenuto della piccola box
-                        text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+                            //contenuto della piccola box
+                            text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
 
-                        //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
-                        singleTaxist.setAttribute("class", "availableTaxi");
-                        singleTaxist.appendChild(text);
-                        singleTaxist.appendChild(document.createElement("br"));
-                        singleTaxist.appendChild(status);
-                        myTaxist.appendChild(singleTaxist);
-                    });
+                            //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
+                            singleTaxist.setAttribute("class", "availableTaxi");
+                            singleTaxist.appendChild(text);
+                            singleTaxist.appendChild(document.createElement("br"));
+                            singleTaxist.appendChild(status);
+                            myTaxist.appendChild(singleTaxist);
+                        });
+
+                        document.getElementById("prenotazioneBtn").disabled = false;
+
+                    }
+                    else {
+                        document.getElementById("prenotazioneBtn").disabled = true;
+
+                    }
                 })
                 .catch(error => console.error(error));
         }
