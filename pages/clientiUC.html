@@ -146,11 +146,11 @@
 
                     taxiUsers.forEach(user => {
                         //creazione di una sezione per ogni tassista disponibile
-                        const section = document.createElement("section");
-                        section.setAttribute("class", "content");
+                        var singleTaxist = document.createElement("section");
                         const li = document.createElement("li");
                         li.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
-                        myTaxist.appendChild(li);
+                        singleTaxist.appendChild(li);
+                        myTaxist.appendChild(singleTaxist);
                     });
                 })
                 .catch(error => console.error(error));
