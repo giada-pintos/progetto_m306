@@ -2,7 +2,7 @@
   "prenotazioni": [
     {
       "id_cliente": 4,
-      "id_tassista": null,
+      "id_tassista": 1,
       "start": "Como",
       "end": "Milano",
       "prezzo": 25,
