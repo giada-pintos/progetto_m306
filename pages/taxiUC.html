@@ -115,11 +115,10 @@
 
 
         $(document).ready(function () {
-            var inCorso = document.getElementById("inCorso");
-            inCorso.innerHTML = "";
+            var inAttesa = document.getElementById("inAttesa");
+            inAttesa.innerHTML = "";
 
-
-
+            //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
             fetch('/data.json')
                 .then(response => response.json())
                 .then(data => {
@@ -131,48 +130,31 @@
                             prenotazioniFiltrate.forEach(prenotazione => {
                                 const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
                                 console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
+
+
+                                //creazione di una sezione per ogni tassista disponibile
+                                var richiesta = document.createElement("section");
+                                const name = document.createElement("h2");
+                                const tragitto = document.createElement("h2");
+
+                                //tragitto
+                                tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
+                                tragitto.setAttribute("align", "right");
+
+
+                                //name
+                                name.textContent = ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName;
+
+
+                                //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
+                                richiesta.setAttribute("class", "inAttesa");
+                                richiesta.appendChild(name);
+                                richiesta.appendChild(document.createElement("br"));
+                                richiesta.appendChild(tragitto);
+                                inAttesa.appendChild(richiesta);
                             });
                         });
                 });
-
-            //fetch('/data.json')
-            //    .then(response => response.json())
-            //    .then(data => {
-            //        const prenotazioniDaAssegnare = data.prenotazioni.filter(prenotazione => !prenotazione.terminata && prenotazione.id_tassista === null);
-
-            //        if (prenotazioniDaAssegnare.length > 0) {
-            //            prenotazioniDaAssegnare.forEach(user => {
-
-            //                //creazione di una sezione per ogni tassista disponibile
-            //                var richiesta = document.createElement("section");
-            //                const name = document.createElement("h2");
-            //                const tragitto = document.createElement("h2");
-
-            //                //tragitto
-            //                tragitto.textContent = `LIBERO`;
-            //                tragitto.setAttribute("align", "right");
-            //                tragitto.style.color = 'green';
-
-            //                //contenuto della piccola box
-            //                text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
-
-            //                //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
-            //                singleTaxist.setAttribute("class", "availableTaxi");
-            //                singleTaxist.appendChild(text);
-            //                singleTaxist.appendChild(document.createElement("br"));
-            //                singleTaxist.appendChild(status);
-            //                myTaxist.appendChild(singleTaxist);
-            //            });
-
-            //            document.getElementById("prenotazioneBtn").disabled = false;
-
-            //        }
-            //        else {
-            //            document.getElementById("prenotazioneBtn").disabled = true;
-
-            //        }
-            //    })
-            //    .catch(error => console.error(error));
         });
 
 
