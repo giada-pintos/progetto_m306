@@ -1,0 +1,68 @@
+{
+  "prenotazioni": [
+    {
+      "id_cliente": 4,
+      "id_tassista": null,
+      "start": "Como",
+      "end": "Milano",
+      "prezzo": 25,
+      "metodoPagamento": "Contanti"
+    },
+    {
+      "id_cliente": 5,
+      "id_tassista": null,
+      "start": "Lugano",
+      "end": "Bellinzona",
+      "prezzo": 30,
+      "metodoPagamento": "Carta di credito"
+    },
+    {
+      "id_cliente": 4,
+      "id_tassista": null,
+      "start": "Chiasso",
+      "end": "Como",
+      "prezzo": 15,
+      "metodoPagamento": "Contanti"
+    },
+    {
+      "id_cliente": 5,
+      "id_tassista": null,
+      "start": "Morbio",
+      "end": "Lugano",
+      "prezzo": 40,
+      "metodoPagamento": "PayPal"
+    },
+    {
+      "id_cliente": 5,
+      "id_tassista": null,
+      "start": "Balerna",
+      "end": "Morbio",
+      "prezzo": 20,
+      "metodoPagamento": "Contanti"
+    },
+    {
+      "id_cliente": 4,
+      "id_tassista": null,
+      "start": "Lugano",
+      "end": "Chiasso",
+      "prezzo": 30,
+      "metodoPagamento": "Carta di credito"
+    },
+    {
+      "id_cliente": 4,
+      "id_tassista": null,
+      "start": "Chiasso",
+      "end": "Morbio",
+      "prezzo": 25,
+      "metodoPagamento": "Contanti"
+    },
+    {
+      "id_cliente": 5,
+      "id_tassista": null,
+      "start": "Lugano",
+      "end": "Como",
+      "prezzo": 35,
+      "metodoPagamento": "PayPal"
+    }
+  ]
+}

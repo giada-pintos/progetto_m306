@@ -17,7 +17,13 @@
     <div id="containerMenu"></div>
 
     <div id="content">
-        <div id="nome_cognome"></div>
+        <div id="nome_cognome_disponibilita">
+            <span id="nome_cognome"></span>
+            <div class="toggle-switch">
+                <input type="checkbox" class="toggle-switch-checkbox">
+                <label class="toggle-switch-label" for="toggle-switch"></label>
+            </div>
+        </div>
     </div>
 
 
@@ -28,6 +34,25 @@
 
     <script>
 
+        $(document).ready(function () {
+            // Otteniamo il nome e il cognome dall'oggetto userData
+            const nomeCognome = userData.firstName + " " + userData.lastName;
+
+            // Aggiorniamo il testo nel div #nome_cognome
+            $("#nome_cognome").text(nomeCognome);
+
+            // Aggiungiamo un listener all'evento change del toggle-switch
+            $(".toggle-switch-checkbox").change(function () {
+                const disponibile = $(this).prop("checked");
+
+                // In base alla disponibilità, aggiorniamo il testo nel div #nome_cognome_disponibilita
+                if (disponibile) {
+                    $("#nome_cognome_disponibilita").text(nomeCognome + " è disponibile");
+                } else {
+                    $("#nome_cognome_disponibilita").text(nomeCognome + " non è disponibile");
+                }
+            });
+        });
 
 
 

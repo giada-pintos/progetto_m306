@@ -146,7 +146,6 @@ function prenota() {
             end: end,
             prezzo: prezzo,
             metodoPagamento: metodoPagamento,
-            importo: importo
         };
 
         // Converti l'oggetto prenotazione in una stringa JSON
