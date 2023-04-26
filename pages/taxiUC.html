@@ -107,6 +107,25 @@
 
             // Aggiorniamo il testo nel div #nome_cognome
             $("#nome_cognome").text(nomeCognome);
+
+            //se status è su 1 allora il tassista è disponibile
+            if (userData.status == 1) {
+                $('input[type="checkbox"]').prop("checked", true);
+
+            }
+            else {
+                $('input[type="checkbox"]').prop("checked", false);
+
+            }
+
+
+            //da sovrascrivere il file json
+            checkbox.on("change", function () {
+                const isChecked = $(this).prop("checked");
+                userData.status = isChecked ? 1 : 0;
+                const disponibile = isChecked ? "disponibile" : "non disponibile";
+                $("#nome_cognome_disponibilita").text(nomeCognome + " è " + disponibile);
+            });
         });
 
 
