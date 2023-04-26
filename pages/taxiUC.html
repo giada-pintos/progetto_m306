@@ -110,8 +110,55 @@
 
 
         $(document).ready(function () {
+            var inCorso = document.getElementById("inCorso");
+            inCorso.innerHTML = "";
+            var prenotazioniFiltrate;
+
+            //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
+            fetch('/data.json')
+                .then(response => response.json())
+                .then(data => {
+                    fetch('/prenotazioni.json')
+                        .then(response => response.json())
+                        .then(prenotazioni => {
+                            prenotazioniFiltrate = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === userData.userId);
+                            const clienti = data.users;
+                            prenotazioniFiltrate.forEach(prenotazione => {
+                                const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
+                                console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
+
+
+                                //creazione di una sezione per ogni tassista disponibile
+                                var richiesta = document.createElement("section");
+                                const name = document.createElement("h2");
+                                const tragitto = document.createElement("h2");
+
+                                //tragitto
+                                tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
+                                tragitto.setAttribute("align", "right");
+
+
+                                //name
+                                name.textContent = cliente.firstName + " " + cliente.lastName;
+
+
+                                //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
+                                richiesta.setAttribute("class", "inAttesa");
+                                richiesta.appendChild(name);
+                                richiesta.appendChild(document.createElement("br"));
+                                richiesta.appendChild(tragitto);
+                                inAttesa.appendChild(richiesta);
+                            });
+                        });
+                });
+
             var inAttesa = document.getElementById("inAttesa");
             inAttesa.innerHTML = "";
+
+            //disabilito la possibilita di prendere altri clienti se ce gia una prenotazione in corso 
+            if (prenotazioniFiltrate.length > 0) {
+                inAttesa.disabled = true;
+            }
 
             //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
             fetch('/data.json')
@@ -150,6 +197,10 @@
                             });
                         });
                 });
+
+
+
+
         });
 
 
