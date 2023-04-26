@@ -1,4 +1,4 @@
-var map, geocoder, start, end;
+var map, geocoder, start, end, prezzo;
 
 function initMap() {
   var directionsService = new google.maps.DirectionsService();
@@ -68,7 +68,7 @@ function calcolaIndicazioni() {
       var distanza = result.routes[0].legs[0].distance.text;
       var tempo = result.routes[0].legs[0].duration.text;
       var prezzo_partenza = 20;
-      var prezzo = prezzo_partenza + (parseFloat(distanza) * 2.8);
+      prezzo = prezzo_partenza + (parseFloat(distanza) * 2.8);
 
       document.getElementById("indicazioni").innerHTML =
         "<h3>Distanza: " +
@@ -131,7 +131,19 @@ function availabilityCheck() {
 
 
 function prenota() {
+    // Codice per prenotare un taxi
 
+    // Simulazione pagamento
+    const metodoPagamento = prompt("Inserisci il metodo di pagamento (es. carta di credito, PayPal):");
+    const importo = 15; // Importo simulato da pagare
+    const confermaPagamento = confirm(`Confermi il pagamento di ${importo}€ con ${metodoPagamento}?`);
+
+    if (confermaPagamento) {
+        // Codice per eseguire il pagamento
+        alert("Pagamento effettuato con successo!");
+    } else {
+        alert("Pagamento annullato.");
+    }
 }
 
 
