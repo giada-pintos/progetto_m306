@@ -129,7 +129,7 @@
                             const prenotazioniFiltrate = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
                             const clienti = data.users;
                             prenotazioniFiltrate.forEach(prenotazione => {
-                                const cliente = clienti.filter(c => c.userId === prenotazione.id_cliente);
+                                const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
                                 console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
                             });
                         });
