@@ -1,4 +1,6 @@
 var map, geocoder, start, end, prezzo;
+var userData = JSON.parse(localStorage.getItem('userData'));
+
 
 function initMap() {
   var directionsService = new google.maps.DirectionsService();
@@ -131,20 +133,33 @@ function availabilityCheck() {
 
 
 function prenota() {
-    // Codice per prenotare un taxi
-
-    // Simulazione pagamento
     const metodoPagamento = prompt("Inserisci il metodo di pagamento (es. carta di credito, PayPal):");
-    const importo = 15; // Importo simulato da pagare
+    const importo = prezzo; // Importo simulato da pagare
     const confermaPagamento = confirm(`Confermi il pagamento di ${importo}€ con ${metodoPagamento}?`);
 
     if (confermaPagamento) {
+        const prenotazione = {
+            id_cliente = userData.userld,
+            start: start,
+            end: end,
+            prezzo: prezzo,
+            metodoPagamento: metodoPagamento,
+            importo: importo
+        };
+
+        // Converti l'oggetto prenotazione in una stringa JSON
+        const prenotazioneJSON = JSON.stringify(prenotazione);
+
+        // Fai qualcosa con la stringa JSON, ad esempio inviala al server
+        console.log(prenotazioneJSON);
+
         // Codice per eseguire il pagamento
         alert("Pagamento effettuato con successo!");
     } else {
         alert("Pagamento annullato.");
     }
 }
+
 
 
 
