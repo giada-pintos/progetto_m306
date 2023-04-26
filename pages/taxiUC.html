@@ -126,7 +126,7 @@
                     fetch('/prenotazioni.json')
                         .then(response => response.json())
                         .then(prenotazioni => {
-                            const prenotazioniFiltrate = prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
+                            const prenotazioniFiltrate = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
                             const clienti = data.users;
                             prenotazioniFiltrate.forEach(prenotazione => {
                                 const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
