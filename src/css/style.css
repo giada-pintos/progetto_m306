@@ -100,6 +100,22 @@ li a {
     top: 65px;
 }
 
+.inCorso {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #cad2c5;
+    border-radius: 25px;
+    top: 65px;
+}
+
+.inAttesa {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #cad2c5;
+    border-radius: 25px;
+    top: 65px;
+}
+
 /*button CSS*/
 button {
     cursor: pointer;

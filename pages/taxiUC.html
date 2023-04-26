@@ -90,6 +90,20 @@
         </div>
     </section>
 
+    <section class="content">
+        <div>
+            <h2>Richieste - In corso</h2>
+        </div>
+        <div id="inCorso"></div>
+    </section>
+
+    <section class="content">
+        <div>
+            <h2>Richieste - In sospeso</h2>
+        </div>
+        <div id="inAttesa"></div>
+    </section>
+
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE"
@@ -98,6 +112,71 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var userData = JSON.parse(localStorage.getItem('userData'));
+
+
+        $(document).ready(function () {
+            var inCorso = document.getElementById("inCorso");
+            inCorso.innerHTML = "";
+
+
+
+            fetch('/data.json')
+                .then(response => response.json())
+                .then(data => {
+                    fetch('/prenotazioni.json')
+                        .then(response => response.json())
+                        .then(prenotazioni => {
+                            const prenotazioniFiltrate = prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
+                            const clienti = data.users;
+                            prenotazioniFiltrate.forEach(prenotazione => {
+                                const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
+                                console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
+                            });
+                        });
+                });
+
+            //fetch('/data.json')
+            //    .then(response => response.json())
+            //    .then(data => {
+            //        const prenotazioniDaAssegnare = data.prenotazioni.filter(prenotazione => !prenotazione.terminata && prenotazione.id_tassista === null);
+
+            //        if (prenotazioniDaAssegnare.length > 0) {
+            //            prenotazioniDaAssegnare.forEach(user => {
+
+            //                //creazione di una sezione per ogni tassista disponibile
+            //                var richiesta = document.createElement("section");
+            //                const name = document.createElement("h2");
+            //                const tragitto = document.createElement("h2");
+
+            //                //tragitto
+            //                tragitto.textContent = `LIBERO`;
+            //                tragitto.setAttribute("align", "right");
+            //                tragitto.style.color = 'green';
+
+            //                //contenuto della piccola box
+            //                text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
+
+            //                //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
+            //                singleTaxist.setAttribute("class", "availableTaxi");
+            //                singleTaxist.appendChild(text);
+            //                singleTaxist.appendChild(document.createElement("br"));
+            //                singleTaxist.appendChild(status);
+            //                myTaxist.appendChild(singleTaxist);
+            //            });
+
+            //            document.getElementById("prenotazioneBtn").disabled = false;
+
+            //        }
+            //        else {
+            //            document.getElementById("prenotazioneBtn").disabled = true;
+
+            //        }
+            //    })
+            //    .catch(error => console.error(error));
+        });
+
+
+
 
 
 
