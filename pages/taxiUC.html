@@ -157,7 +157,8 @@
 
                             //disabilito la possibilita di prendere altri clienti se ce gia una prenotazione in corso, oppure se il tassista è in status 0
                             if (prenotazioniFiltrate.length > 0 || userData.status === 0) {
-                                inAttesa.disabled = true;
+                                inAttesa.style.display = "none";
+
                             }
 
                             //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
