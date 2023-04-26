@@ -84,7 +84,7 @@
         <div id="nome_cognome_disponibilita">
             <h2 id="nome_cognome"></h2>
             <label class="switch">
-                <input type="checkbox">
+                <input type="checkbox" id="myStatus">
                 <span class="slider round"></span>
             </label>
         </div>
@@ -120,11 +120,12 @@
 
 
             //da sovrascrivere il file json
-            checkbox.on("change", function () {
-                const isChecked = $(this).prop("checked");
-                userData.status = isChecked ? 1 : 0;
-                const disponibile = isChecked ? "disponibile" : "non disponibile";
-                $("#nome_cognome_disponibilita").text(nomeCognome + " è " + disponibile);
+            $(document).ready(function () {
+                // ...
+                $("#myStatus").change(function () {
+                    var status = ($(this).is(":checked")) ? 1 : 0;
+                    userData.status = status;
+                });
             });
         });
 
