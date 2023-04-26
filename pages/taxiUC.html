@@ -125,6 +125,7 @@
                 $("#myStatus").change(function () {
                     var status = ($(this).is(":checked")) ? 1 : 0;
                     userData.status = status;
+                    console.log(userData);
                 });
             });
         });
