@@ -141,7 +141,6 @@ function prenota() {
 
     if (confermaPagamento) {
         const prenotazione = {
-            id_cliente = userData.userld,
             start: start,
             end: end,
             prezzo: prezzo,
