@@ -1,5 +1,7 @@
 var map, geocoder, start, end, prezzo;
 var userData = JSON.parse(localStorage.getItem('userData'));
+console.log(userData);
+console.log(userData.userId);
 
 
 function initMap() {
