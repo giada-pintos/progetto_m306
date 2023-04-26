@@ -119,14 +119,11 @@
             }
 
 
-            //da sovrascrivere il file json
-            $(document).ready(function () {
-                // ...
-                $("#myStatus").change(function () {
-                    var status = ($(this).is(":checked")) ? 1 : 0;
-                    userData.status = status;
-                    console.log(userData);
-                });
+            //sovrascrivere il file json prenotazioni.json
+            $("#myStatus").change(function () {
+                var status = ($(this).is(":checked")) ? 1 : 0;
+                userData.status = status;
+                console.log(userData);
             });
         });
 
