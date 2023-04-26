@@ -167,10 +167,19 @@
                                 console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
 
 
-                                //creazione di una sezione per ogni tassista disponibile
+                                //creazione di una sezione per ogni corsa disponibile
                                 var richiesta = document.createElement("section");
                                 const name = document.createElement("h2");
                                 const tragitto = document.createElement("h2");
+                                const prezzo = document.createElement("h3");
+                                const accettaCorsa = document.createElement("button");
+
+                                //prezzo
+                                prezzo.textContent = prenotazione.prezzo + " CHF";
+
+                                //button accettazione corsa
+                                accettaCorsa.textContent = "Accetta corsa";
+                                accettaCorsa.setAttribute("onclick", "accettaCorsa()");
 
                                 //tragitto
                                 tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
@@ -186,6 +195,9 @@
                                 richiesta.appendChild(name);
                                 richiesta.appendChild(document.createElement("br"));
                                 richiesta.appendChild(tragitto);
+                                richiesta.appendChild(document.createElement("br"));
+                                richiesta.appendChild(prezzo);
+                                richiesta.appendChild(accettaCorsa);
                                 inAttesa.appendChild(richiesta);
                             });
                         });
@@ -193,112 +205,9 @@
         });
 
 
-
-
-
-
-
-
-
-        //$(document).ready(function () {
-        //    var inCorso = document.getElementById("inCorso");
-        //    inCorso.innerHTML = "";
-        //    var prenotazioniFiltrate;
-        //    var inAttesa = document.getElementById("inAttesa");
-        //    inAttesa.innerHTML = "";
-
-
-        //    //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
-        //    fetch('/data.json')
-        //        .then(response => response.json())
-        //        .then(data => {
-        //            fetch('/prenotazioni.json')
-        //                .then(response => response.json())
-        //                .then(prenotazioni => {
-        //                    prenotazioniFiltrate = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === userData.userId);
-        //                    const clienti = data.users;
-        //                    prenotazioniFiltrate.forEach(prenotazione => {
-        //                        const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
-        //                        console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
-
-
-        //                        //creazione di una sezione per ogni tassista disponibile
-        //                        var richiesta = document.createElement("section");
-        //                        const name = document.createElement("h2");
-        //                        const tragitto = document.createElement("h2");
-
-        //                        //tragitto
-        //                        tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
-        //                        tragitto.setAttribute("align", "right");
-
-
-        //                        //name
-        //                        name.textContent = cliente.firstName + " " + cliente.lastName;
-
-
-        //                        //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
-        //                        richiesta.setAttribute("class", "inAttesa");
-        //                        richiesta.appendChild(name);
-        //                        richiesta.appendChild(document.createElement("br"));
-        //                        richiesta.appendChild(tragitto);
-        //                        inAttesa.appendChild(richiesta);
-        //                    });
-        //                });
-        //            //disabilito la possibilita di prendere altri clienti se ce gia una prenotazione in corso, oppure se il tassista è in status 0
-        //            if (prenotazioniFiltrate.length > 0 || userData.status === 0) {
-        //                inAttesa.disabled = true;
-        //            }
-        //        });
-
-
-
-
-
-        //    //filtrare le prenotazioni e conoscere il nome di un utente grazie a id_cliente
-        //    fetch('/data.json')
-        //        .then(response => response.json())
-        //        .then(data => {
-        //            fetch('/prenotazioni.json')
-        //                .then(response => response.json())
-        //                .then(prenotazioni => {
-        //                    const prenotazioniFiltrate = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
-        //                    const clienti = data.users;
-        //                    prenotazioniFiltrate.forEach(prenotazione => {
-        //                        const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
-        //                        console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
-
-
-        //                        //creazione di una sezione per ogni tassista disponibile
-        //                        var richiesta = document.createElement("section");
-        //                        const name = document.createElement("h2");
-        //                        const tragitto = document.createElement("h2");
-
-        //                        //tragitto
-        //                        tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
-        //                        tragitto.setAttribute("align", "right");
-
-
-        //                        //name
-        //                        name.textContent = cliente.firstName + " " + cliente.lastName;
-
-
-        //                        //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
-        //                        richiesta.setAttribute("class", "inAttesa");
-        //                        richiesta.appendChild(name);
-        //                        richiesta.appendChild(document.createElement("br"));
-        //                        richiesta.appendChild(tragitto);
-        //                        inAttesa.appendChild(richiesta);
-        //                    });
-        //                });
-        //        });
-
-
-
-
-        //});
-
-
-
+        function accettaCorsa() {
+            alert("corsa accettata");
+        }
 
 
 
