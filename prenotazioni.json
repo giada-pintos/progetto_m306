@@ -7,7 +7,7 @@
       "end": "Milano",
       "prezzo": 25,
       "metodoPagamento": "Contanti",
-      "terminata" : true
+      "terminata" : false
     },
     {
       "id_cliente": 5,
@@ -25,7 +25,7 @@
       "end": "Como",
       "prezzo": 15,
       "metodoPagamento": "Contanti",
-      "terminata": true
+      "terminata": false
     },
     {
       "id_cliente": 5,
@@ -43,7 +43,7 @@
       "end": "Morbio",
       "prezzo": 20,
       "metodoPagamento": "Contanti",
-      "terminata": true
+      "terminata": false
     },
     {
       "id_cliente": 4,
@@ -70,7 +70,7 @@
       "end": "Como",
       "prezzo": 35,
       "metodoPagamento": "PayPal",
-      "terminata": true
+      "terminata": false
     }
   ]
 }
