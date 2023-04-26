@@ -138,6 +138,7 @@ button {
     display: inline-block;
     width: 60px;
     height: 34px;
+    float: right;
 }
 
     .toggle-switch input[type="checkbox"] {
