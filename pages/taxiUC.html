@@ -6,8 +6,7 @@
 
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/menu.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <style>
         /* The switch - the box around the slider */
@@ -18,12 +17,12 @@
             height: 34px;
         }
 
-        /* Hide default HTML checkbox */
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+            /* Hide default HTML checkbox */
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
 
         /* The slider */
         .slider {
@@ -38,27 +37,27 @@
             transition: .4s;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
 
-        input:checked+.slider {
+        input:checked + .slider {
             background-color: #2196F3;
         }
 
-        input:focus+.slider {
+        input:focus + .slider {
             box-shadow: 0 0 1px #2196F3;
         }
 
-        input:checked+.slider:before {
+        input:checked + .slider:before {
             -webkit-transform: translateX(26px);
             -ms-transform: translateX(26px);
             transform: translateX(26px);
@@ -69,9 +68,9 @@
             border-radius: 34px;
         }
 
-        .slider.round:before {
-            border-radius: 50%;
-        }
+            .slider.round:before {
+                border-radius: 50%;
+            }
     </style>
 
 </head>
@@ -102,7 +101,8 @@
 
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE" async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE"
+            async></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -212,52 +212,30 @@
 
 
         $(document).ready(function () {
-    // Otteniamo il nome e il cognome dall'oggetto userData e userId
-    const nomeCognome = userData.firstName + " " + userData.lastName;
-    const userId = userData.userId;
+            // Otteniamo il nome e il cognome dall'oggetto userData
+            const nomeCognome = userData.firstName + " " + userData.lastName;
 
-    // Aggiorniamo il testo nel div #nome_cognome
-    $("#nome_cognome").text(nomeCognome);
+            // Aggiorniamo il testo nel div #nome_cognome
+            $("#nome_cognome").text(nomeCognome);
 
-    // Carichiamo il file JSON utilizzando fetch()
-    fetch('/data.json')
-        .then(response => response.json())
-        .then(data => {
-            // Troviamo l'indice per sapere che riga aggiornare
-            const index = data.users.findIndex(user => user.userId === userId);
-
-            // Se lo status è su 1 allora il tassista è disponibile
+            //se status � su 1 allora il tassista � disponibile
             if (userData.status == 1) {
                 $('input[type="checkbox"]').prop("checked", true);
+
             }
-            // Se lo status è su 0 allora il tassista è non disponibile
             else {
                 $('input[type="checkbox"]').prop("checked", false);
+
             }
 
-            // Aggiorniamo il file JSON quando lo stato cambia
+
+            //sovrascrivere il file json prenotazioni.json
             $("#myStatus").change(function () {
                 var status = ($(this).is(":checked")) ? 1 : 0;
                 userData.status = status;
-                data.users[index].status = status;
-                const updatedJsonData = JSON.stringify(data, null, 2);
-
-                // Salva i dati nel file JSON utilizzando fetch() con il metodo PUT
-                fetch('/data.json', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: updatedJsonData
-                })
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch(error => console.error(error));
+                console.log(userData);
             });
-        })
-        .catch(error => console.error(error));
-});
-
+        });
 
 
 
