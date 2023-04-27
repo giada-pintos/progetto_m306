@@ -230,22 +230,26 @@
                 var status = ($(this).is(":checked")) ? 1 : 0;
                 userData.status = status;
 
-                // aggiorna lo status dell'utente nell'array
-                const index = data.users.findIndex(user => user.userId === userData.userId);
-                data.users[index].status = status;
-
-                // scrivi il nuovo contenuto nel file json
-                const url = '/data.json';
-                fetch(url, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                })
+                fetch('/data.json')
                     .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch(error => console.error(error));
+                    .then(data => {
+                        // aggiorna lo status dell'utente nell'array
+                        const index = data.users.findIndex(user => user.userId === userData.userId);
+                        data.users[index].status = status;
+
+                        // scrivi il nuovo contenuto nel file json
+                        const url = '/data.json';
+                        fetch(url, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(response => response.json())
+                            .then(data => console.log(data))
+                            .catch(error => console.error(error));
+                    });
             });
         });
 
