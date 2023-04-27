@@ -211,8 +211,6 @@
 
 
 
-        const fs = require('fs');
-
         $(document).ready(function () {
             // Otteniamo il nome e il cognome dall'oggetto userData
             const nomeCognome = userData.firstName + " " + userData.lastName;
@@ -233,7 +231,10 @@
                 userData.status = status;
 
                 // leggi il contenuto del file json
-                const jsonData = fs.readFileSync('/data.json');
+                const request = new XMLHttpRequest();
+                request.open("GET", "/data.json", false);
+                request.send(null);
+                const jsonData = request.responseText;
                 const data = JSON.parse(jsonData);
 
                 // trova l'indice dell'utente all'interno dell'array
@@ -244,9 +245,14 @@
 
                 // scrivi il nuovo contenuto nel file json
                 const updatedJsonData = JSON.stringify(data, null, 2);
-                fs.writeFileSync('/data.json', updatedJsonData);
+                const file = new Blob([updatedJsonData], { type: 'application/json' });
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(file);
+                a.download = "data.json";
+                a.click();
             });
         });
+
 
 
 
