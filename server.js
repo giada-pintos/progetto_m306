@@ -2,31 +2,43 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+const hostname = 'localhost';
+const port = 3000;
+
 const server = http.createServer((req, res) => {
-  // Verifica se la richiesta è per l'indirizzo principale "/"
-  if (req.url === '/') {
-    // Legge il contenuto del file index.html
-    const filePath = path.join(__dirname, 'index.html');
-    fs.readFile(filePath, (err, content) => {
-      if (err) {
-        // Se si verifica un errore durante la lettura del file, restituisci un errore 500
-        res.writeHead(500);
-        res.end(`Errore durante la lettura del file index.html: ${err}`);
-      } else {
-        // Imposta l'intestazione della risposta
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        // Restituisci il contenuto del file index.html
-        res.end(content, 'utf-8');
-      }
-    });
+  console.log(`Request for ${req.url} by method ${req.method}`);
+
+  if (req.method === 'GET') {
+    let fileUrl = req.url;
+    if (fileUrl === '/') {
+      fileUrl = '/index.html';
+    }
+    const filePath = path.resolve(`.${fileUrl}`);
+    const fileExt = path.extname(filePath);
+    if (fileExt === '.html' || fileExt === '.css' || fileExt === '.js') {
+      fs.access(filePath, (err) => {
+        if (err) {
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'text/html');
+          res.end(`<html><body><h1>Error 404: ${fileUrl} not found</h1></body></html>`);
+          return;
+        }
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        fs.createReadStream(filePath).pipe(res);
+      });
+    } else {
+      res.statusCode = 404;
+      res.setHeader('Content-Type', 'text/html');
+      res.end(`<html><body><h1>Error 404: ${fileUrl} not a HTML file</h1></body></html>`);
+    }
   } else {
-    // Se la richiesta non è per l'indirizzo principale, restituisci un errore 404
-    res.writeHead(404);
-    res.end('Pagina non trovata');
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/html');
+    res.end(`<html><body><h1>Error 404: ${req.method} not supported</h1></body></html>`);
   }
 });
 
-// Avvia il server sulla porta 3000
-server.listen(3000, () => {
-  console.log('Server in ascolto sulla porta 3000');
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
