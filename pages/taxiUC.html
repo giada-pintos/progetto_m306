@@ -230,28 +230,31 @@
                 var status = ($(this).is(":checked")) ? 1 : 0;
                 userData.status = status;
 
-                fetch('/data.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        // aggiorna lo status dell'utente nell'array
-                        const index = data.users.findIndex(user => user.userId === userData.userId);
-                        data.users[index].status = status;
+                // leggi il contenuto del file json
+                $.getJSON("/data.json", function (data) {
+                    // trova l'indice dell'utente all'interno dell'array
+                    const index = data.users.findIndex(user => user.userId === userData.userId);
 
-                        // scrivi il nuovo contenuto nel file json
-                        const url = '/data.json';
-                        fetch(url, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        })
-                            .then(response => response.json())
-                            .then(data => console.log(data))
-                            .catch(error => console.error(error));
+                    // aggiorna lo status dell'utente nell'array
+                    data.users[index].status = status;
+
+                    // invia il nuovo contenuto del file json al server
+                    $.ajax({
+                        url: '/data.json',
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (response) {
+                            console.log(response);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                        }
                     });
+                });
             });
         });
+
 
 
 
