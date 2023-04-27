@@ -211,42 +211,52 @@
 
 
 
-        const fs = require('fs');
+        $(document).ready(function () {
+    // Otteniamo il nome e il cognome dall'oggetto userData e userId
+    const nomeCognome = userData.firstName + " " + userData.lastName;
+    const userId = userData.userId;
 
-        // Otteniamo il nome e il cognome dall'oggetto userData e userId
-        const nomeCognome = userData.firstName + " " + userData.lastName;
-        const userId = userData.userId;
+    // Aggiorniamo il testo nel div #nome_cognome
+    $("#nome_cognome").text(nomeCognome);
 
-        // Aggiorniamo il testo nel div #nome_cognome
-        const nomeCognomeDiv = document.getElementById("nome_cognome");
-        nomeCognomeDiv.innerText = nomeCognome;
+    // Carichiamo il file JSON utilizzando fetch()
+    fetch('/data.json')
+        .then(response => response.json())
+        .then(data => {
+            // Troviamo l'indice per sapere che riga aggiornare
+            const index = data.users.findIndex(user => user.userId === userId);
 
-        const jsonData = fs.readFileSync('./data.json');
-        const data = JSON.parse(jsonData);
+            // Se lo status è su 1 allora il tassista è disponibile
+            if (userData.status == 1) {
+                $('input[type="checkbox"]').prop("checked", true);
+            }
+            // Se lo status è su 0 allora il tassista è non disponibile
+            else {
+                $('input[type="checkbox"]').prop("checked", false);
+            }
 
-        //trovo l'index per sapere che riga aggiornare
-        const index = data.users.findIndex(user => user.userId === userId);
+            // Aggiorniamo il file JSON quando lo stato cambia
+            $("#myStatus").change(function () {
+                var status = ($(this).is(":checked")) ? 1 : 0;
+                userData.status = status;
+                data.users[index].status = status;
+                const updatedJsonData = JSON.stringify(data, null, 2);
 
-        //se status è su 1 allora il tassista è disponibile
-        if (userData.status == 1) {
-            const checkbox = document.querySelector('input[type="checkbox"]');
-            checkbox.checked = true;
-        }
-        //se status è su 0 allora il tassista è non disponibile
-        else {
-            const checkbox = document.querySelector('input[type="checkbox"]');
-            checkbox.checked = false;
-        }
-
-        //sovrascrivere il file json data.json
-        const myStatus = document.getElementById('myStatus');
-        myStatus.addEventListener('change', function () {
-            const status = myStatus.checked ? 1 : 0;
-            userData.status = status;
-            data.users[index].status = status;
-            const updatedJsonData = JSON.stringify(data, null, 2);
-            fs.writeFileSync('./data.json', updatedJsonData);
-        });
+                // Salva i dati nel file JSON utilizzando fetch() con il metodo PUT
+                fetch('/data.json', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: updatedJsonData
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
+            });
+        })
+        .catch(error => console.error(error));
+});
 
 
 
