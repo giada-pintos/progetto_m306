@@ -236,7 +236,7 @@
                     const index = data.users.findIndex(user => user.userId === userData.userId);
 
                     // aggiorna lo status dell'utente nell'array
-                    data.users[user.userId].status = status;
+                    data.users[userData.userId].status = status;
 
                     // invia il nuovo contenuto del file json al server
                     $.ajax({
