@@ -6,7 +6,8 @@
 
     <link rel="stylesheet" href="../src/css/style.css">
     <link rel="stylesheet" href="../src/css/menu.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <style>
         /* The switch - the box around the slider */
@@ -17,12 +18,12 @@
             height: 34px;
         }
 
-            /* Hide default HTML checkbox */
-            .switch input {
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
         /* The slider */
         .slider {
@@ -37,27 +38,27 @@
             transition: .4s;
         }
 
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                bottom: 4px;
-                background-color: white;
-                -webkit-transition: .4s;
-                transition: .4s;
-            }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: #2196F3;
         }
 
-        input:focus + .slider {
+        input:focus+.slider {
             box-shadow: 0 0 1px #2196F3;
         }
 
-        input:checked + .slider:before {
+        input:checked+.slider:before {
             -webkit-transform: translateX(26px);
             -ms-transform: translateX(26px);
             transform: translateX(26px);
@@ -68,9 +69,9 @@
             border-radius: 34px;
         }
 
-            .slider.round:before {
-                border-radius: 50%;
-            }
+        .slider.round:before {
+            border-radius: 50%;
+        }
     </style>
 
 </head>
@@ -101,8 +102,7 @@
 
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE"
-            async></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE" async></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -144,7 +144,7 @@
                                 name.textContent = cliente.firstName + " " + cliente.lastName;
 
 
-                                //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
+                                //inAttesa ï¿½ in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
                                 richiesta.setAttribute("class", "inAttesa");
                                 richiesta.appendChild(name);
                                 richiesta.appendChild(document.createElement("br"));
@@ -155,7 +155,7 @@
                             var inAttesa = document.getElementById("inAttesa");
                             inAttesa.innerHTML = "";
 
-                            //disabilito la possibilita di prendere altri clienti se ce gia una prenotazione in corso, oppure se il tassista è in status 0
+                            //disabilito la possibilita di prendere altri clienti se ce gia una prenotazione in corso, oppure se il tassista ï¿½ in status 0
                             if (prenotazioniFiltrate.length > 0 || userData.status === 0) {
                                 inAttesa.style.display = "none";
 
@@ -191,7 +191,7 @@
                                 name.textContent = cliente.firstName + " " + cliente.lastName;
 
 
-                                //inAttesa è in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
+                                //inAttesa ï¿½ in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
                                 richiesta.setAttribute("class", "inAttesa");
                                 richiesta.appendChild(name);
                                 richiesta.appendChild(document.createElement("br"));
@@ -211,31 +211,43 @@
 
 
 
-        $(document).ready(function () {
-            // Otteniamo il nome e il cognome dall'oggetto userData
-            const nomeCognome = userData.firstName + " " + userData.lastName;
+        const fs = require('fs');
 
-            // Aggiorniamo il testo nel div #nome_cognome
-            $("#nome_cognome").text(nomeCognome);
+        // Otteniamo il nome e il cognome dall'oggetto userData e userId
+        const nomeCognome = userData.firstName + " " + userData.lastName;
+        const userId = userData.userId;
 
-            //se status è su 1 allora il tassista è disponibile
-            if (userData.status == 1) {
-                $('input[type="checkbox"]').prop("checked", true);
+        // Aggiorniamo il testo nel div #nome_cognome
+        const nomeCognomeDiv = document.getElementById("nome_cognome");
+        nomeCognomeDiv.innerText = nomeCognome;
 
-            }
-            else {
-                $('input[type="checkbox"]').prop("checked", false);
+        const jsonData = fs.readFileSync('./data.json');
+        const data = JSON.parse(jsonData);
 
-            }
+        //trovo l'index per sapere che riga aggiornare
+        const index = data.users.findIndex(user => user.userId === userId);
 
+        //se status Ã¨ su 1 allora il tassista Ã¨ disponibile
+        if (userData.status == 1) {
+            const checkbox = document.querySelector('input[type="checkbox"]');
+            checkbox.checked = true;
+        }
+        //se status Ã¨ su 0 allora il tassista Ã¨ non disponibile
+        else {
+            const checkbox = document.querySelector('input[type="checkbox"]');
+            checkbox.checked = false;
+        }
 
-            //sovrascrivere il file json prenotazioni.json
-            $("#myStatus").change(function () {
-                var status = ($(this).is(":checked")) ? 1 : 0;
-                userData.status = status;
-                console.log(userData);
-            });
+        //sovrascrivere il file json data.json
+        const myStatus = document.getElementById('myStatus');
+        myStatus.addEventListener('change', function () {
+            const status = myStatus.checked ? 1 : 0;
+            userData.status = status;
+            data.users[index].status = status;
+            const updatedJsonData = JSON.stringify(data, null, 2);
+            fs.writeFileSync('./data.json', updatedJsonData);
         });
+
 
 
 
