@@ -231,7 +231,7 @@
                 userData.status = status;
 
                 // leggi il contenuto del file json
-                $.getJSON("./my_users.json", function (data) {
+                $.getJSON("/my_users.json", function (data) {
                     // trova l'indice dell'utente all'interno dell'array
                     const index = data.users.findIndex(user => user.userId === userData.userId);
 
@@ -240,7 +240,7 @@
 
                     // invia il nuovo contenuto del file json al server
                     $.ajax({
-                        url: './my_users.json',
+                        url: '/my_users.json',
                         type: 'POST',
                         data: JSON.stringify(data),
                         contentType: 'application/json',
