@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "isTaxi": true,
+      "userId": 1,
+      "lastName": "Gibra",
+      "firstName": "Gibra",
+      "phoneNumber": "555-555-5555",
+      "emailAddress": "clee@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car": "Mercedes Benz Viano"
+    },
+    {
+      "isTaxi": true,
+      "userId": 2,
+      "lastName": "Jackson",
+      "firstName": "Action",
+      "phoneNumber": "555-555-5556",
+      "emailAddress": "ajackson@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Balerna",
+      "car": "BMW X5"
+    },
+    {
+      "isTaxi": true,
+      "userId": 3,
+      "lastName": "Bing",
+      "firstName": "Ross",
+      "phoneNumber": "555-555-5557",
+      "emailAddress": "rbing@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Morbio",
+      "car": "Skoda Octavia"
+    },
+    {
+      "isTaxi": false,
+      "userId": 4,
+      "lastName": "Reeves",
+      "firstName": "David",
+      "phoneNumber": "555-555-5558",
+      "emailAddress": "dreeves@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car": "Skoda Octavia"
+    },
+    {
+      "isTaxi": false,
+      "userId": 5,
+      "lastName": "Mac",
+      "firstName": "Josie",
+      "phoneNumber": "555-555-5559",
+      "emailAddress": "jmac@fileinfo.com",
+      "status": 1,
+      "currentPosition": "Chiasso",
+      "car": "Skoda Octavia"
+    }
+  ]
+}
