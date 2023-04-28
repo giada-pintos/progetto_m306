@@ -232,6 +232,14 @@
                 var status = ($(this).is(":checked")) ? 1 : 0;
                 userData.status = status;
                 localStorage.setItem("userData", JSON.stringify(userData));
+
+
+                // rendi il div #inAttesa visibile o lo nascondi
+                if (userData.status == 1) {
+                    $("#inAttesa").show();
+                } else {
+                    $("#inAttesa").hide();
+                }
             });
         });
 
