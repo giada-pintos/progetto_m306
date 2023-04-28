@@ -225,35 +225,15 @@
                 $('input[type="checkbox"]').prop("checked", false);
             }
 
-            //sovrascrivere il file json prenotazioni.json
+            // Salviamo l'oggetto userData nella localStorage al cambio di stato del checkbox
             $("#myStatus").change(function () {
                 var status = ($(this).is(":checked")) ? 1 : 0;
                 userData.status = status;
-
-                // leggi il contenuto del file json
-                $.getJSON("/my_users.json", function (data) {
-                    // trova l'indice dell'utente all'interno dell'array
-                    const index = data.users.findIndex(user => user.userId === userData.userId);
-
-                    // aggiorna lo status dell'utente nell'array
-                    data.users[userData.userId].status = status;
-
-                    // invia il nuovo contenuto del file json al server
-                    $.ajax({
-                        url: '/my_users.json',
-                        type: 'POST',
-                        data: JSON.stringify(data),
-                        contentType: 'application/json',
-                        success: function (response) {
-                            console.log(response);
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                });
+                localStorage.setItem("userData", JSON.stringify(userData));
             });
         });
+
+
 
     </script>
 
