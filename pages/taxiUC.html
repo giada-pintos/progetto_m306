@@ -221,8 +221,10 @@
             //se status è su 1 allora il tassista è disponibile
             if (userData.status == 1) {
                 $('input[type="checkbox"]').prop("checked", true);
+                $("#inAttesa").show(); // rendi il div #inAttesa visibile
             } else {
                 $('input[type="checkbox"]').prop("checked", false);
+                $("#inAttesa").hide(); // nascondi il div #inAttesa
             }
 
             // Salviamo l'oggetto userData nella localStorage al cambio di stato del checkbox
