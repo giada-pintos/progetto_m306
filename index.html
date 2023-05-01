@@ -2,6 +2,7 @@
 
 <head>
     <title>Taxi App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/style.css">
@@ -14,24 +15,26 @@
         <div class="row">
 
             <!--MENU-->
-            <div class="" id="containerMenu"></div>
+            <div class="col-sm-12" id="containerMenu"></div>
 
-            <section class="content col-sm-9">
-                <h1>Progetto m306 "The taxi app"<img src="/src/img/taxi_logo.png" width="50px" height="50px" /></h1>
-                <div class="block col-md-3">
+            <section class="content">
+                <h1 class="text-center h2">Progetto m306 "The taxi app"<img src="/src/img/taxi_logo.png" width="50px" height="50px" /></h1>
+                <div class="block col-sm-12">
                     <p>Siamo un gruppo di giovani studenti della CPT di Locarno</p>
-                    <button onclick="window.location.href = 'pages/authentication/login.html';"
-                        class="log">Login</button>
+                    <div>
+                        <button onclick="window.location.href = 'pages/authentication/login.html';"
+                        class=" log">Login</button>
                     <button onclick="window.location.href = 'pages/authentication/login.html';" class="reg">Sign
                         up</button>
+                    </div>
                 </div>
             </section>
 
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12">
-                        <div class="col-md-4">
+                        <div class="flex-column">
+                        <div class="col-sm-4">
                             <h3>Autori del progetto:</h3>
                             <ul>
                                 <li>Abdu</li>
@@ -39,12 +42,14 @@
                                 <li>Giada</li>
                             </ul>
                         </div>
-                        <div class="col-md-3">
-                            <h3 class="text-center">Scuola:</h3>
-                            <p>CPT Locarno</p>
-                            <p>I3a - Sviluppatori</p>
+                        <div class="col-sm-3">
+                            <h3>Scuola:</h3>
+                            <ul>
+                                <li>CPT Locarno</li>
+                                <li>I3a - Sviluppatori</li>
+                            </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <h3>Link utili:</h3>
                             <ul>
                                 <li><a href="#">Maps API</a></li>
