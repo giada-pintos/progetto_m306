@@ -73,11 +73,11 @@ li a {
     border-radius: 25px;
 }
 
-    .block button {
-        margin-top: 15px;
-        margin-bottom: 50px;
-        border-radius: 25px;
-    }
+.block button {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    border-radius: 25px;
+}
 
 .flex {
     display: flex;
@@ -85,7 +85,7 @@ li a {
 
 .content {
     position: absolute;
-    margin-top:25px;
+    margin-top: 25px;
     padding-bottom: 25px;
     top: 65px;
 }
@@ -127,12 +127,12 @@ button {
     transition: 0.4s;
 }
 
-    button:hover {
-        color: white;
-        width: 200px;
-        box-shadow: 0 0 20px #2f3e46;
-        background-color: #2f3e46;
-    }
+button:hover {
+    color: white;
+    width: 200px;
+    box-shadow: 0 0 20px #2f3e46;
+    background-color: #2f3e46;
+}
 
 .reg {
     align-items: center;
@@ -146,6 +146,7 @@ button {
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid #2f3e46;
 }
+
 #nome_cognome {
     display: inline-block;
     font-weight: bold;
@@ -155,7 +156,7 @@ button {
 /* CSS per pagina tassista
 
  /* The switch - the box around the slider */
- .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -215,4 +216,15 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* CSS per  pagina ordine */
+
+#map {
+    height: 400px;
+    width: 98%;
+}
+
+label {
+    color: white;
 }
