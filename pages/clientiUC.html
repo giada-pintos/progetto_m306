@@ -22,49 +22,21 @@
             <section class="content mt-3 justify-content-center text-center">
                 <h3>Inserisci i seguenti dati:</h3>
                 <diV class="block p-2 mt-2">
-                    <label for="start">Posizione di partenza:</label>
+                    <label for="start">Posizione di partenza:</label><br />
                     <input type="text" id="start" placeholder="Inserisci la posizione di partenza">
-                    <button onclick="usaPosizioneCorrente()">Mia posizione</button>
-                    <label for="end">Destinazione:</label>
+                    <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
+                    <label for="end">Destinazione:</label><br />
                     <input type="text" id="end" placeholder="Inserisci la destinazione">
                     <br><br>
                     <button onclick="calcolaIndicazioni()">Invia</button>
                     <br><br>
                 </diV>
                 
-                <div id="map"></div>
+                <div class="block mt-2" id="map"></div>
                 <div id="indicazioni"></div>
                 <div id="availableTaxi"></div>
             </section>
         </div>
-        <footer class="position-fixed">
-            <div class="d-flex justify-content-around">
-                <div>
-                    <h3>Autori del progetto:</h3>
-                    <ul>
-                        <li>Abdu</li>
-                        <li>Daniel</li>
-                        <li>Giada</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Scuola:</h3>
-                    <ul>
-                        <li>CPT Locarno</li>
-                        <li>I3a - Sviluppatori</li>
-                    </ul>
-
-                </div>
-                <div>
-                    <h3>Link utili:</h3>
-                    <ul>
-                        <li><a href="#">Maps API</a></li>
-                        <li><a href="#">Translate API</a></li>
-                        <li><a href="#">Documentazione</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
