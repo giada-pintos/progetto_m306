@@ -11,7 +11,6 @@ fetch('/data.json')
             event.preventDefault();
             const nomeUtente = document.querySelector('#nomeUtente').value;
             const password = document.querySelector('#password').value;
-            alert(password)
             if (checkUserExists(data, nomeUtente, password)) {
                 errorLabel.innerHTML = "";
                 if (userData.isTaxi) {
