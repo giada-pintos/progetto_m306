@@ -9,9 +9,10 @@ fetch('/data.json')
     .then(data => {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const firstName = document.querySelector('#firstName').value;
-            const lastName = document.querySelector('#lastName').value;
-            if (checkUserExists(data, firstName, lastName)) {
+            const nomeUtente = document.querySelector('#nomeUtente').value;
+            const password = document.querySelector('#password').value;
+            alert(password)
+            if (checkUserExists(data, nomeUtente, password)) {
                 errorLabel.innerHTML = "";
                 if (userData.isTaxi) {
                     window.location = "../../pages/taxiUC.html";
@@ -25,8 +26,8 @@ fetch('/data.json')
         });
     });
 
-function checkUserExists(data, firstName, lastName) {
-    const foundUser = data.users.find(user => user.firstName === firstName && user.lastName === lastName);
+function checkUserExists(data, nomeUtente, password) {
+    const foundUser = data.users.find(user => user.nomeUtente === nomeUtente && user.password === password);
     if (foundUser) {
         localStorage.setItem('userData', JSON.stringify(foundUser));
         userData = foundUser;
