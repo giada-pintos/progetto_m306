@@ -9,108 +9,72 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-        /* The switch - the box around the slider */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        /* Hide default HTML checkbox */
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        /* The slider */
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked+.slider {
-            background-color: #2196F3;
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked+.slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
-
 </head>
 
 <body onload="startUp()">
+    <div class="container align-items-center">
+        <div class="row">
 
-    <!--MENU-->
-    <div id="containerMenu"></div>
+            <!--MENU-->
+            <div  class="col-sm-12" id="containerMenu"></div>
 
-    <section class="content">
-        <div id="nome_cognome_disponibilita">
-            <h2 id="nome_cognome"></h2>
-            <label class="switch">
-                <input type="checkbox" id="myStatus">
-                <span class="slider round"></span>
-            </label>
+            <section class="content mt-3">
+                <div id="nome_cognome_disponibilita">
+                    <h2>Bentornato, </h2><h2 id="nome_cognome"></h2>
+                    <label class="my-2 switch">
+                        <input type="checkbox" id="myStatus">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="block">
+                <div>
+                    <h2>Richieste - In corso</h2>
+                </div>
+                <div id="inCorso"></div>
+
+                <div>
+                    <h2>Richieste - In sospeso</h2>
+                </div>
+                <div id="inAttesa"></div>
+                </div>
+            </section>
         </div>
-        <div>
-            <h2>Richieste - In corso</h2>
-        </div>
-        <div id="inCorso"></div>
 
-        <div>
-            <h2>Richieste - In sospeso</h2>
-        </div>
-        <div id="inAttesa"></div>
-    </section>
+        <footer class="position-fixed">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <h3>Autori del progetto:</h3>
+                    <ul>
+                        <li>Abdu</li>
+                        <li>Daniel</li>
+                        <li>Giada</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Scuola:</h3>
+                    <ul>
+                        <li>CPT Locarno</li>
+                        <li>I3a - Sviluppatori</li>
+                    </ul>
 
+                </div>
+                <div>
+                    <h3>Link utili:</h3>
+                    <ul>
+                        <li><a href="#">Maps API</a></li>
+                        <li><a href="#">Translate API</a></li>
+                        <li><a href="#">Documentazione</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE" async></script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var userData = JSON.parse(localStorage.getItem('userData'));
-
-
-
-
 
         $(document).ready(function () {
             var inCorso = document.getElementById("inCorso");
@@ -139,10 +103,8 @@
                                 tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
                                 tragitto.setAttribute("align", "right");
 
-
                                 //name
                                 name.textContent = cliente.firstName + " " + cliente.lastName;
-
 
                                 //inAttesa � in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
                                 richiesta.setAttribute("class", "inAttesa");
@@ -166,7 +128,6 @@
                             prenotazioniFiltrateDisponibili.forEach(prenotazione => {
                                 const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
                                 console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
-
 
                                 //creazione di una sezione per ogni corsa disponibile
                                 var richiesta = document.createElement("section");
@@ -209,8 +170,6 @@
             alert("corsa accettata");
         }
 
-
-
         $(document).ready(function () {
             // Otteniamo il nome e il cognome dall'oggetto userData
             const nomeCognome = userData.firstName + " " + userData.lastName;
@@ -250,6 +209,8 @@
     <!--SCRIPT-->
     <script type="text/javascript" src="../src/js/menu.js"></script>
     <script type="text/javascript" src="../src/js/onload_index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
