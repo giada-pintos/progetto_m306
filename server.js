@@ -37,10 +37,10 @@ app.get('/index', (req, res) => {
                 </div>
             </section>
 
-            <footer>
+            <footer class="fixed-bottom">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             <h3>Autori del progetto:</h3>
                             <ul>
                                 <li>Abdu</li>
@@ -48,16 +48,16 @@ app.get('/index', (req, res) => {
                                 <li>Giada</li>
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             <h3 class="text-center">Scuola:</h3>
                             <p>CPT Locarno</p>
                             <p>I3a - Sviluppatori</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-4">
                             <h3>Link utili:</h3>
                             <ul>
-                                <li><a href="#">Maps API</a></li>
-                                <li><a href="#">Translate API</a></li>
+                                <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                                <li><a href="#">Presentation PowerPoint</a></li>
                                 <li><a href="#">Documentazione</a></li>
                             </ul>
                         </div>
@@ -199,7 +199,7 @@ app.get('/clientiUC', (req, res) => {
             <div class="row">
     
                 <!--MENU-->
-                <div class="col-sm-12" id="containerMenu"></div>
+                <div class="col-sm-12" col-12 id="containerMenu"></div>
     
                 <section class="content mt-3 justify-content-center text-center">
                     <h3>Inserisci i seguenti dati:</h3>
@@ -261,7 +261,7 @@ app.get('/login', (req, res) => {
         <div class="row">
 
             <!--MENU-->
-            <div class="col-sm-12" id="containerMenu"></div>
+            <div class="col-sm-12 col-12" id="containerMenu"></div>
 
             <section class="content mt-3">
                 <div>
@@ -279,7 +279,7 @@ app.get('/login', (req, res) => {
             </section>
         </div>
 
-        <footer class="position-fixed">
+        <footer class="fixed-bottom">
             <div class="d-flex justify-content-around">
                 <div>
                     <h3>Autori del progetto:</h3>
@@ -300,8 +300,8 @@ app.get('/login', (req, res) => {
                 <div>
                     <h3>Link utili:</h3>
                     <ul>
-                        <li><a href="#">Maps API</a></li>
-                        <li><a href="#">Translate API</a></li>
+                        <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                        <li><a href="#">Presentation PowerPoint</a></li>
                         <li><a href="#">Documentazione</a></li>
                     </ul>
                 </div>
@@ -345,7 +345,7 @@ app.get('/register', (req, res) => {
             <div class="row">
     
                 <!--MENU-->
-                <div class="col-sm-12" id="containerMenu"></div>
+                <div class="col-sm-12 col-12" id="containerMenu"></div>
                 <section class="content mt-3">
                     <div>
                         <h1>Registrazione</h1>
@@ -369,7 +369,7 @@ app.get('/register', (req, res) => {
                     </div>
                 </section>
             </div>
-            <footer class="position-fixed">
+            <footer class="fixed-bottom">
                 <div class="d-flex justify-content-around">
                     <div>
                         <h3>Autori del progetto:</h3>
@@ -390,8 +390,8 @@ app.get('/register', (req, res) => {
                     <div>
                         <h3>Link utili:</h3>
                         <ul>
-                            <li><a href="#">Maps API</a></li>
-                            <li><a href="#">Translate API</a></li>
+                            <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                            <li><a href="#">Presentation PowerPoint</a></li>
                             <li><a href="#">Documentazione</a></li>
                         </ul>
                     </div>
