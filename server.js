@@ -108,11 +108,11 @@ app.get('/taxiUC', (req, res) => {
             </label>
           </div>
           <div>
-            <h2>Richieste - In corso</h2>
+            <h3>Richieste - In corso</h3>
           </div>
           <div id="inCorso"></div>
           <div>
-            <h2>Richieste - In sospeso</h2>
+            <h3>Richieste - In sospeso</h3>
           </div>
           <div id="inAttesa"></div>
         </section>
@@ -197,31 +197,36 @@ app.get('/clientiUC', (req, res) => {
     </head>
     
     <body onload="startUp()">
-        <div class="container align-items-center">
-            <div class="row">
-    
+        
+            
                 <!--MENU-->
                 <div class="col-sm-12" id="containerMenu"></div>
     
                 <section class="content mt-3 justify-content-center text-center">
                     <h3>Inserisci i seguenti dati:</h3>
-                    <diV class="block p-2 mt-2">
-                        <label for="start" class="h4">Posizione di partenza:</label><br />
-                        <input type="text" id="start" placeholder="Inserisci la posizione di partenza"> /
-                        <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
-                        <label for="end" class="h4">Destinazione:</label><br />
-                        <input type="text" id="end" placeholder="Inserisci la destinazione">
-                        <br><br>
-                        <button onclick="calcolaIndicazioni()">Invia</button>
-                        <br><br>
+                    <div class="block p-2 mt-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="start" class="h4">Posizione di partenza:</label><br />
+                                <input type="text" id="start" placeholder="Inserisci la posizione di partenza"> /
+                                <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
+                                <label for="end" class="h4">Destinazione:</label><br />
+                                <input type="text" id="end" placeholder="Inserisci la destinazione">
+                                <br><br>
+                                <button onclick="calcolaIndicazioni()">Invia</button>
+                                <br><br>
+                            </div>
+                            <div class="col-6">
+                                <div class="block mt-2" id="map"></div>
+                                <div id="indicazioni"></div>
+                                <div id="availableTaxi"></div>
+                            </div>    
+                        </div>
+                    </div>
                     </diV>
-                    
-                    <div class="block mt-2" id="map"></div>
-                    <div id="indicazioni"></div>
-                    <div id="availableTaxi"></div>
                 </section>
-            </div>
-        </div>
+                
     
         <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
         <script

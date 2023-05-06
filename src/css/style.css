@@ -197,11 +197,11 @@ button:hover {
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: #2f3e46;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #2f3e46;
 }
 
 input:checked+.slider:before {
@@ -222,8 +222,9 @@ input:checked+.slider:before {
 /* CSS per  pagina ordine */
 
 #map {
+    margin-left:50px;
     height: 400px;
-    width: 98%;
+    width: 80%;
 }
 
 label {
