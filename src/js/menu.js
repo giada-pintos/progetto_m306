@@ -33,7 +33,7 @@ var html = `
 
         <div id="menu">
             <ul>
-                <li><a style="color: white;" href="/index.html">Hom<span class="space">e</span></a></li>
+                <li><a style="color: white;" href="/index">Hom<span class="space">e</span></a></li>
                 <li><a style="color: white;" href="${link}">${account}<span class="space"></span></a></li>
                 <li><a style="color: white;" href="#">Projec<span class="space">t</span></a></li>
                 <li><a style="color: white;" href="#">Contac<span class="space">t</span></a></li>
