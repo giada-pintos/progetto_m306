@@ -1,12 +1,12 @@
 
 //menu apposito per il tipo di cliente che sei
-var link = "authentication/login.html";
+var link = "login";
 var account = "";
 try {
     var userData = JSON.parse(localStorage.getItem('userData'));
     if (userData.isTaxi === true) {
         account = "Taxi";
-        link = "../../pages/taxiUC.html";
+        link = "taxiUC";
     }
     else if (userData.isTaxi === false) {
         account = "Cliente";
