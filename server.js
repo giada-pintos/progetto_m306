@@ -28,8 +28,8 @@ app.get('/index', (req, res) => {
                 <h1>Progetto m306 "The taxi app"<img src="/img/taxi_logo.png" width="50px" height="50px" /></h1>
                 <div class="block">
                     <p>Siamo un gruppo di giovani studenti della CPT di Locarno</p>
-                    <button onclick="window.location.href = 'pages/authentication/login.html';" class="log">Login</button>
-                    <button onclick="window.location.href = 'pages/authentication/login.html';" class="reg">Sign up</button>
+                    <button onclick="window.location.href = 'login';" class="log">Login</button>
+                    <button onclick="window.location.href = 'register';" class="reg">Sign up</button>
                 </div>
             </section>
 
@@ -138,7 +138,7 @@ app.get('/taxiUC', (req, res) => {
     </html>
   `);
     res.end();
-   
+
     // leggere il contenuto del file
     fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
@@ -157,7 +157,7 @@ app.get('/taxiUC', (req, res) => {
         const json = JSON.stringify(obj);
 
         // scrivere la stringa JSON nel file
-        fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
+        fs.writeFile(path.join(__dirname, 'data.json'), json, 'utf8', (err) => {
             if (err) throw err;
             console.log('Status modificato');
         });
@@ -170,17 +170,184 @@ app.get('/taxiUC', (req, res) => {
 
 
 
-app.get('/taxiUC', (req, res) => {
+app.get('/clientiUC', (req, res) => {
     res.header('Content-Type', 'text/html');
     res.write(`
 
+    `)
+    res.end();
+});
 
+
+
+app.get('/login', (req, res) => {
+    res.header('Content-Type', 'text/html');
+    res.write(`
+    <html>
+
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container align-items-center">
+        <div class="row">
+
+            <!--MENU-->
+            <div class="col-sm-12" id="containerMenu"></div>
+
+            <section class="content mt-3">
+                <div>
+                    <h1>Login</h1>
+                </div>
+                <div>
+                    <form class="flex-column justify-content-center block p-3">
+                        <label>Nome Utente</label>
+                        <input type="text" id="nomeUtente"><br/>
+                        <label class="mt-2">Password</label>
+                        <input type="password" id="password"><br/>
+                        <button class="log mt-2" type="submit">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <footer class="position-fixed">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <h3>Autori del progetto:</h3>
+                    <ul>
+                        <li>Abdu</li>
+                        <li>Daniel</li>
+                        <li>Giada</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Scuola:</h3>
+                    <ul>
+                        <li>CPT Locarno</li>
+                        <li>I3a - Sviluppatori</li>
+                    </ul>
+
+                </div>
+                <div>
+                    <h3>Link utili:</h3>
+                    <ul>
+                        <li><a href="#">Maps API</a></li>
+                        <li><a href="#">Translate API</a></li>
+                        <li><a href="#">Documentazione</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <!--SCRIPT-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/js/menu.js"></script>
+    <script type="module" src="/js/login_checker.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>
+    `)
+    res.end();
+});
+
+
+app.get('/register', (req, res) => {
+    res.header('Content-Type', 'text/html');
+    res.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Registration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/menu.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container align-items-center">
+            <div class="row">
     
+                <!--MENU-->
+                <div class="col-sm-12" id="containerMenu"></div>
+                <section class="content mt-3">
+                    <div>
+                        <h1>Registrazione</h1>
+                    </div>
+                    <div>
+                        <form class="flex-column justify-content-center block p-3">
+                            <label>Nome:</label>
+                            <input type="text" id="firstName" required><br/>
+    
+                            <label class="mt-2">Cognome:</label>
+                            <input type="text" id="lastName" required><br/>
+    
+                            <label class="mt-2">Nome Utente:</label>
+                            <input type="text" id="nomeUtente" required><br/>
+    
+                            <label class="mt-2">Password:</label>
+                            <input type="password" id="password" required><br/>
+    
+                            <button class="log mt-2" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <footer class="position-fixed">
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <h3>Autori del progetto:</h3>
+                        <ul>
+                            <li>Abdu</li>
+                            <li>Daniel</li>
+                            <li>Giada</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Scuola:</h3>
+                        <ul>
+                            <li>CPT Locarno</li>
+                            <li>I3a - Sviluppatori</li>
+                        </ul>
+    
+                    </div>
+                    <div>
+                        <h3>Link utili:</h3>
+                        <ul>
+                            <li><a href="#">Maps API</a></li>
+                            <li><a href="#">Translate API</a></li>
+                            <li><a href="#">Documentazione</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+        <!--<script type="module" src="/js/login_checker.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
 
-
-
-
-
+    `)
+    res.end();
+});
 
 
 
