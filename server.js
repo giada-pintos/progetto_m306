@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 const path = require('path');
 const app = express();
 
@@ -140,7 +141,7 @@ app.get('/taxiUC', (req, res) => {
     res.end();
 
     // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, '/data.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
 
         // convertire il contenuto in un oggetto
@@ -157,7 +158,7 @@ app.get('/taxiUC', (req, res) => {
         const json = JSON.stringify(obj);
 
         // scrivere la stringa JSON nel file
-        fs.writeFile(path.join(__dirname, 'data.json'), json, 'utf8', (err) => {
+        fs.writeFile(path.join(__dirname, '/data.json'), json, 'utf8', (err) => {
             if (err) throw err;
             console.log('Status modificato');
         });
