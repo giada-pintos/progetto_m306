@@ -141,7 +141,7 @@ app.get('/taxiUC', (req, res) => {
     res.end();
 
     // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, '/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
 
         // convertire il contenuto in un oggetto
