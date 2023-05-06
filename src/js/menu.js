@@ -10,11 +10,11 @@ try {
     }
     else if (userData.isTaxi === false) {
         account = "Cliente";
-        link = "../../pages/clientiUC.html";
+        link = "clientiUC";
     }
 }
 catch (ex) {
-    link = "../../pages/authentication/login.html";
+    link = "login";
     account = "Login";
 }
 

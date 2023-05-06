@@ -14,9 +14,9 @@ fetch('/data.json')
             if (checkUserExists(data, nomeUtente, password)) {
                 errorLabel.innerHTML = "";
                 if (userData.isTaxi) {
-                    window.location = "../../pages/taxiUC.html";
+                    window.location = "taxiUC";
                 } else {
-                    window.location = "../../pages/clientiUC.html";
+                    window.location = "clientiUC";
                 }
             } else {
                 errorLabel.innerHTML = "Password o Nome utente errati.";
