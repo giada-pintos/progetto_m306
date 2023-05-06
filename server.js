@@ -5,6 +5,9 @@ const path = require('path');
 const app = express();
 
 
+
+
+
 // Serve i file statici nella cartella public
 app.use(express.static('src'));
 
@@ -140,6 +143,9 @@ app.get('/taxiUC', (req, res) => {
   `);
     res.end();
 
+    //Inizializzo utente loggato
+    var userData = JSON.parse(localStorage.getItem('userData'));
+
     // leggere il contenuto del file
     fs.readFile(path.join(__dirname, '/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
@@ -149,7 +155,7 @@ app.get('/taxiUC', (req, res) => {
 
         // trovare l'utente con userId 1 e modificare lo status
         obj.users.forEach(user => {
-            if (user.userId === 1) {
+            if (user.userId === userData.id) {
                 user.status = 0;
             }
         });
