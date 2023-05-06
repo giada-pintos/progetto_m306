@@ -140,7 +140,7 @@ app.get('/taxiUC', (req, res) => {
     res.end();
 
     // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, '/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
 
         // convertire il contenuto in un oggetto
@@ -173,7 +173,61 @@ app.get('/taxiUC', (req, res) => {
 app.get('/clientiUC', (req, res) => {
     res.header('Content-Type', 'text/html');
     res.write(`
-
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <title>Taxi</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/menu.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    
+    </head>
+    
+    <body onload="startUp()">
+        <div class="container align-items-center">
+            <div class="row">
+    
+                <!--MENU-->
+                <div class="col-sm-12" id="containerMenu"></div>
+    
+                <section class="content mt-3 justify-content-center text-center">
+                    <h3>Inserisci i seguenti dati:</h3>
+                    <diV class="block p-2 mt-2">
+                        <label for="start" class="h4">Posizione di partenza:</label><br />
+                        <input type="text" id="start" placeholder="Inserisci la posizione di partenza"> /
+                        <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
+                        <label for="end" class="h4">Destinazione:</label><br />
+                        <input type="text" id="end" placeholder="Inserisci la destinazione">
+                        <br><br>
+                        <button onclick="calcolaIndicazioni()">Invia</button>
+                        <br><br>
+                    </diV>
+                    
+                    <div class="block mt-2" id="map"></div>
+                    <div id="indicazioni"></div>
+                    <div id="availableTaxi"></div>
+                </section>
+            </div>
+        </div>
+    
+        <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
+            async></script>
+    
+        <!--SCRIPT-->
+        <script src="/js/clientiUC_maps_availability_indicazioni.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/js/menu.js"></script>
+        <script type="text/javascript" src="/js/onload_index.js"></script>
+    
+    </body>
+    
+    </html>
     `)
     res.end();
 });
