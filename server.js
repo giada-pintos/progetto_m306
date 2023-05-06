@@ -79,7 +79,7 @@ app.get('/index', (req, res) => {
 
 
 
-app.get('/pages/taxiUC', (req, res) => {
+app.get('/taxiUC', (req, res) => {
     res.header('Content-Type', 'text/html');
     res.write(`
     <html>
@@ -138,8 +138,7 @@ app.get('/pages/taxiUC', (req, res) => {
     </html>
   `);
     res.end();
-
-
+   
     // leggere il contenuto del file
     fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
@@ -166,6 +165,21 @@ app.get('/pages/taxiUC', (req, res) => {
 
 
 });
+
+
+
+
+
+app.get('/taxiUC', (req, res) => {
+    res.header('Content-Type', 'text/html');
+    res.write(`
+
+
+    
+
+
+
+
 
 
 
