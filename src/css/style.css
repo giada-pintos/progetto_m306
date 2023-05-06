@@ -12,12 +12,12 @@ body {
 section {
     width: 100%;
     margin-top: 10px;
-    background-color: #2f3e46;
+    background-color: #21272b;
     border-radius: 25px;
 }
 
 footer {
-    background-color: #2f3e46;
+    background-color: #21272b;
     border-radius: 25px;
     left: 0;
     bottom: 0;
@@ -138,7 +138,7 @@ button:hover {
 .reg {
     align-items: center;
     color: white;
-    background-color: #2f3e46;
+    background-color: #21272b;
 }
 
 .log {

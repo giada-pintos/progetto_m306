@@ -9,7 +9,7 @@
     z-index: 111;
     cursor: pointer;
     width: 100%;
-    background: #2f3e46;
+    background: #21272b;
     height: 65px;
     position: fixed;
 }
@@ -44,7 +44,7 @@
         }
 
     .navT:hover {
-        background: black;
+        background: #21272b;
     }
 
         .navT:hover .icon:before {
@@ -118,8 +118,8 @@
     #menu.open {
         height: 270px;
         width: 100%;
-        background: #2f3e46;
-        border-bottom: 1px solid black;
+        background: #21272b;
+        border-bottom: 1px solid #21272b;
         border-radius: 25px;
     }
 

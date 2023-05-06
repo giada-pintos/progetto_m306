@@ -50,12 +50,12 @@ app.get('/index', (req, res) => {
                                 <li>Giada</li>
                             </ul>
                         </div>
-                        <div class="col-md-4 col-4">
+                        <div class="col-md-4 col-3">
                             <h3 class="text-center">Scuola:</h3>
                             <p>CPT Locarno</p>
                             <p>I3a - Sviluppatori</p>
                         </div>
-                        <div class="col-md-4 col-4">
+                        <div class="col-md-4 col-5">
                             <h3>Link utili:</h3>
                             <ul>
                                 <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
@@ -201,7 +201,7 @@ app.get('/clientiUC', (req, res) => {
             <div class="row">
     
                 <!--MENU-->
-                <div class="col-sm-12" col-12 id="containerMenu"></div>
+                <div class="col-sm-12" id="containerMenu"></div>
     
                 <section class="content mt-3 justify-content-center text-center">
                     <h3>Inserisci i seguenti dati:</h3>
@@ -259,9 +259,6 @@ app.get('/login', (req, res) => {
 </head>
 
 <body>
-    <div class="container align-items-center">
-        <div class="row">
-
             <!--MENU-->
             <div class="col-sm-12 col-12" id="containerMenu"></div>
 
@@ -279,37 +276,34 @@ app.get('/login', (req, res) => {
                     </form>
                 </div>
             </section>
-        </div>
 
-        <footer class="fixed-bottom">
-            <div class="d-flex justify-content-around">
-                <div>
-                    <h3>Autori del progetto:</h3>
-                    <ul>
-                        <li>Abdu</li>
-                        <li>Daniel</li>
-                        <li>Giada</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Scuola:</h3>
-                    <ul>
-                        <li>CPT Locarno</li>
-                        <li>I3a - Sviluppatori</li>
-                    </ul>
-
-                </div>
-                <div>
-                    <h3>Link utili:</h3>
-                    <ul>
-                        <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
-                        <li><a href="#">Presentation PowerPoint</a></li>
-                        <li><a href="#">Documentazione</a></li>
-                    </ul>
+            <footer class="fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-4">
+                        <h3>Autori del progetto:</h3>
+                        <ul>
+                            <li>Abdu</li>
+                            <li>Daniel</li>
+                            <li>Giada</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-3">
+                        <h3 class="text-center">Scuola:</h3>
+                        <p>CPT Locarno</p>
+                        <p>I3a - Sviluppatori</p>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <h3>Link utili:</h3>
+                        <ul>
+                            <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                            <li><a href="#">Presentation PowerPoint</a></li>
+                            <li><a href="#">Documentazione</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </footer>
-    </div>
 
 
     <!--SCRIPT-->
@@ -343,9 +337,7 @@ app.get('/register', (req, res) => {
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container align-items-center">
-            <div class="row">
-    
+   
                 <!--MENU-->
                 <div class="col-sm-12 col-12" id="containerMenu"></div>
                 <section class="content mt-3">
@@ -370,10 +362,10 @@ app.get('/register', (req, res) => {
                         </form>
                     </div>
                 </section>
-            </div>
             <footer class="fixed-bottom">
-                <div class="d-flex justify-content-around">
-                    <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-4">
                         <h3>Autori del progetto:</h3>
                         <ul>
                             <li>Abdu</li>
@@ -381,15 +373,12 @@ app.get('/register', (req, res) => {
                             <li>Giada</li>
                         </ul>
                     </div>
-                    <div>
-                        <h3>Scuola:</h3>
-                        <ul>
-                            <li>CPT Locarno</li>
-                            <li>I3a - Sviluppatori</li>
-                        </ul>
-    
+                    <div class="col-md-4 col-3">
+                        <h3 class="text-center">Scuola:</h3>
+                        <p>CPT Locarno</p>
+                        <p>I3a - Sviluppatori</p>
                     </div>
-                    <div>
+                    <div class="col-md-4 col-5">
                         <h3>Link utili:</h3>
                         <ul>
                             <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
@@ -398,8 +387,8 @@ app.get('/register', (req, res) => {
                         </ul>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script type="text/javascript" src="/js/menu.js"></script>
         <!--<script type="module" src="/js/login_checker.js"></script>-->
