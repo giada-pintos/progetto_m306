@@ -32,8 +32,10 @@ app.get('/index', (req, res) => {
                 <h1>Progetto m306 "The taxi app"<img src="/img/taxi_logo.png" width="50px" height="50px" /></h1>
                 <div class="block">
                     <p>Siamo un gruppo di giovani studenti della CPT di Locarno</p>
+                    <div class="d-flex justify-content-center">
                     <button onclick="window.location.href = 'login';" class="log">Login</button>
                     <button onclick="window.location.href = 'register';" class="reg">Sign up</button>
+                    </div>
                 </div>
             </section>
 
@@ -268,7 +270,7 @@ app.get('/login', (req, res) => {
                     <h1>Login</h1>
                 </div>
                 <div>
-                    <form class="flex-column justify-content-center block p-3">
+                    <form class="flex-column block p-3">
                         <label>Nome Utente</label>
                         <input type="text" id="nomeUtente"><br/>
                         <label class="mt-2">Password</label>

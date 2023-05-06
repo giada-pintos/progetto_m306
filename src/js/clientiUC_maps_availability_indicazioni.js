@@ -74,15 +74,16 @@ function calcolaIndicazioni() {
       prezzo = prezzo_partenza + (parseFloat(distanza) * 2.8);
 
       document.getElementById("indicazioni").innerHTML =
-        "<h3>Distanza: " +
-        distanza +
-        "<br>Tempo di percorrenza: " +
-        tempo +
-        "<br>Prezzo: " +
-        prezzo + " CHF" +
-        "</h3>" +
-        "<button onclick=availabilityCheck()>Controlla disponibilita</button>" + "<button id=prenotazioneBtn onclick=prenota() disabled>Prenota Corsa</button>"
-        ;
+      '<div class="card">' +
+      '<div class="card-body">' +
+        '<h3 class="card-title">Distanza: ' + distanza + '</h3>' +
+        '<p class="card-text">Tempo di percorrenza: ' + tempo + '</p>' +
+        '<p class="card-text">Prezzo: ' + prezzo + ' CHF</p>' +
+        '<button class="btn btn-primary" onclick="availabilityCheck()">Controlla disponibilitÃ </button>' +
+        '<button class="btn btn-primary" id="prenotazioneBtn" onclick="prenota()" disabled>Prenota Corsa</button>' +
+      '</div>' +
+    '</div>';
+
     }
   });
 }
@@ -112,7 +113,7 @@ function availabilityCheck() {
           //contenuto della piccola box
           text.textContent = `${user.firstName} ${user.lastName} - ${user.car}`;
 
-          //availableTaxi è in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
+          //availableTaxi ï¿½ in style, per modificare la grafica dei tassisti disponibili per favore utilizzare solo quello
           singleTaxist.setAttribute("class", "availableTaxi");
           singleTaxist.appendChild(text);
           singleTaxist.appendChild(document.createElement("br"));
@@ -136,7 +137,7 @@ function availabilityCheck() {
 function prenota() {
     const metodoPagamento = prompt("Inserisci il metodo di pagamento (es. carta di credito, PayPal):");
     const importo = prezzo; // Importo simulato da pagare
-    const confermaPagamento = confirm(`Confermi il pagamento di ${importo}€ con ${metodoPagamento}?`);
+    const confermaPagamento = confirm(`Confermi il pagamento di ${importo}ï¿½ con ${metodoPagamento}?`);
 
     if (confermaPagamento) {
         const prenotazione = {
