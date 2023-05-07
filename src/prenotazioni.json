@@ -1,1 +1,13 @@
-{"prenotazioni":[{"id_cliente":4,"id_tassista":2,"start":"Como","end":"Milano","prezzo":25,"metodoPagamento":"Contanti","terminata":false},{"id_cliente":5,"id_tassista":null,"start":"Lugano","end":"Bellinzona","prezzo":30,"metodoPagamento":"Carta di credito","terminata":true},{"id_cliente":1,"id_tassista":null,"start":"Chiasso","end":"Como","prezzo":15,"metodoPagamento":"Contanti","terminata":false},{"id_cliente":2,"id_tassista":null,"start":"Morbio","end":"Lugano","prezzo":40,"metodoPagamento":"PayPal","terminata":true},{"id_cliente":3,"id_tassista":null,"start":"Balerna","end":"Morbio","prezzo":20,"metodoPagamento":"Contanti","terminata":false},{"id_cliente":1,"id_tassista":null,"start":"Militärstrasse 3, 8004 Zürich, Svizzera","end":"Dubai - Emirati Arabi Uniti","prezzo":37.696,"metodoPagamento":"rrfd","terminata":false},{"id_cliente":1,"id_tassista":null,"start":"Militärstrasse 3, 8004 Zürich, Svizzera","end":"Francia","prezzo":1770,"metodoPagamento":"CONTANTI","terminata":false},{"id_cliente":1,"id_tassista":null,"start":"Militärstrasse 3, 8004 Zürich, Svizzera","end":"Dubai - Emirati Arabi Uniti","prezzo":37.696,"metodoPagamento":"dede","terminata":false},{"id_cliente":1,"id_tassista":null,"start":"Militärstrasse 3, 8004 Zürich, Svizzera","end":"Francia","prezzo":1770,"metodoPagamento":"Natura","terminata":false},{"id_cliente":1,"id_tassista":null,"start":"Militärstrasse 3, 8004 Zürich, Svizzera","end":"Francia","prezzo":1770,"metodoPagamento":"Natura","terminata":false},{"id_cliente":4,"id_tassista":null,"start":"Via Gola di Lago, Capriasca, Switzerland","end":"Lugano, Switzerland","prezzo":52.199999999999996,"metodoPagamento":"c","terminata":false},{"id_cliente":4,"id_tassista":null,"start":"Via Gola di Lago, Capriasca, Switzerland","end":"Lugano, Switzerland","prezzo":52.199999999999996,"metodoPagamento":"c","terminata":false}]}
+{
+    "prenotazioni": [
+        {
+            "id_cliente": 4,
+            "id_tassista": null,
+            "start": "Como",
+            "end": "Milano",
+            "prezzo": 25,
+            "metodoPagamento": "Contanti",
+            "terminata": false
+        }
+    ]
+}
