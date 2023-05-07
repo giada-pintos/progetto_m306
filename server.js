@@ -229,6 +229,31 @@ app.get('/clientiUC', (req, res) => {
     res.end();
 
 
+    // leggere il contenuto del file
+    fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+        if (err) throw err;
+
+        // convertire il contenuto in un oggetto
+        const obj = JSON.parse(data);
+
+        // convertire l'oggetto modificato in una stringa JSON
+        const json = JSON.stringify(obj);
+        let newJson;
+        if (prenotazione.id_cliente == undefined) {
+            newJson = json;
+        } else {
+            const forAdd = json.slice(0, -2);
+            newJson = forAdd.concat(",", prenotazioneJSON, "]}");
+        }
+
+        // scrivere la stringa JSON nel file
+        fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
+            if (err) throw err;
+            console.log('Prenotazione aggiunto');
+        });
+    });
+
+
 });
 
 
@@ -315,6 +340,20 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.header('Content-Type', 'text/html');
+    const newdata = {
+        isTaxi: false,
+        userId: 0,
+        lastName: req.query.lastName,
+        firstName: req.query.firstName,
+        nomeUtente: req.query.nomeUtente,
+        password: req.query.password,
+        status: 0,
+        currentPosition: req.query.currentPosition,
+        car: req.query.car
+    }
+    if (!(newdata.firstName == undefined)) {
+        res.writeHead(302, { 'Location': '/login' });
+    }
     res.write(`
     <!DOCTYPE html>
     <html>
@@ -397,18 +436,7 @@ app.get('/register', (req, res) => {
     res.end();
 
 
-    const newdata = {
-        isTaxi: false,
-        userId: 0,
-        lastName:  req.query.lastName,
-        firstName: req.query.firstName,
-        nomeUtente: req.query.nomeUtente,
-        password: req.query.password,
-        status: 1,
-        currentPosition: req.query.currentPosition,
-        car: req.query.car
-    }
-    
+
     // leggere il contenuto del file
     fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
@@ -431,13 +459,13 @@ app.get('/register', (req, res) => {
         // convertire l'oggetto modificato in una stringa JSON
         const json = JSON.stringify(obj);
         let newJson;
-        if(newdata.firstName == undefined){
+        if (newdata.firstName == undefined) {
             newJson = json;
-        }else{
+        } else {
             const forAdd = json.slice(0, -2);
             newJson = forAdd.concat(",", newDataJson, "]}");
         }
-        
+
         // scrivere la stringa JSON nel file
         fs.writeFile(path.join(__dirname, 'src/data.json'), newJson, 'utf8', (err) => {
             if (err) throw err;
