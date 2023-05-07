@@ -325,7 +325,8 @@ app.get('/clientiUC', (req, res) => {
             <section class="content">
                 <h2 id="nome_cognome"></h2>
               <div>
-                <h3>Richieste - In corso</h3>
+                <h3>Prenotazione - In corso</h3>
+                <h3>Sarai contattato da un taxista appena possibile</h3>
               </div>
               <div id="inCorso"></div>
             </section>
