@@ -206,7 +206,15 @@ app.get('/clientiUC', (req, res) => {
                             </div>    
                         </div>
                     </div>
+                    <div class="block">
+                        <div>
+                            <h1>La tua corsa è stata accettata, il tassista ti contatterà a breve</h1>
+                        </div>
+                    </div>
+
                     </diV>
+
+                    
                 </section>
                 
     
