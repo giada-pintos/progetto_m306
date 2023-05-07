@@ -352,16 +352,22 @@ app.get('/register', (req, res) => {
                     <div>
                         <form class="flex-column justify-content-center block p-3">
                             <label>Nome:</label>
-                            <input type="text" id="firstName" required><br/>
+                            <input type="text" name="firstName" required><br/>
     
                             <label class="mt-2">Cognome:</label>
-                            <input type="text" id="lastName" required><br/>
+                            <input type="text" name="lastName" required><br/>
+
+                            <label class="mt-2">Posizione:</label>
+                            <input type="text" name="currentPosition" required><br/>
+
+                            <label class="mt-2">Macchina:</label>
+                            <input type="text" name="car" required><br/>
     
                             <label class="mt-2">Nome Utente:</label>
-                            <input type="text" id="nomeUtente" required><br/>
+                            <input type="text" name="nomeUtente" required><br/>
     
                             <label class="mt-2">Password:</label>
-                            <input type="password" id="password" required><br/>
+                            <input type="password" name="password" required><br/>
     
                             <button class="log mt-2" type="submit">Submit</button>
                         </form>
@@ -404,6 +410,56 @@ app.get('/register', (req, res) => {
 
     `)
     res.end();
+
+
+    const newdata = {
+        isTaxi: false,
+        userId: 0,
+        lastName:  req.query.lastName,
+        firstName: req.query.firstName,
+        nomeUtente: req.query.nomeUtente,
+        password: req.query.password,
+        status: 1,
+        currentPosition: req.query.currentPosition,
+        car: req.query.car
+    }
+    
+    // leggere il contenuto del file
+    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
+        if (err) throw err;
+
+        // convertire il contenuto in un oggetto
+        const obj = JSON.parse(data);
+
+        var maxId = 0;
+        // trovare userID più grande
+        obj.users.forEach(user => {
+            if (user.userId > maxId) {
+                maxId = user.userId
+            }
+        });
+
+        newdata.userId = maxId + 1;
+
+        const newDataJson = JSON.stringify(newdata);
+
+        // convertire l'oggetto modificato in una stringa JSON
+        const json = JSON.stringify(obj);
+        let newJson;
+        if(newdata.firstName == undefined){
+            newJson = json;
+        }else{
+            const forAdd = json.slice(0, -2);
+            newJson = forAdd.concat(",", newDataJson, "]}");
+        }
+        
+        // scrivere la stringa JSON nel file
+        fs.writeFile(path.join(__dirname, 'src/data.json'), newJson, 'utf8', (err) => {
+            if (err) throw err;
+            console.log('Utente aggiunto');
+        });
+    });
+
 });
 
 
