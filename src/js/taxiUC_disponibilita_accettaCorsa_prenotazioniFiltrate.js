@@ -22,18 +22,27 @@ $(document).ready(function () {
                         var richiesta = document.createElement("section");
                         const name = document.createElement("h2");
                         const tragitto = document.createElement("h2");
+                        const termina = document.createElement("button");
+
 
                         //tragitto
                         tragitto.textContent = "Da " + prenotazione.start + " a " + prenotazione.end;
                         tragitto.setAttribute("align", "right");
 
                         //name
-                        name.textContent = cliente.firstName + " " + cliente.lastName;
+                        name.textContent = cliente.firstName + " " + cliente.lastName + ", ID: " + prenotazione.id_cliente;
+
+                        //termina corsa
+                        termina.textContent = "Termina";
+                        termina.setAttribute("onclick", "termina()");
+                        termina.setAttribute("align", "left");
+
 
                         //inAttesa � in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
                         richiesta.setAttribute("class", "inAttesa");
                         richiesta.appendChild(name);
                         richiesta.appendChild(document.createElement("br"));
+                        richiesta.appendChild(termina);
                         richiesta.appendChild(tragitto);
                         inCorso.appendChild(richiesta);
                     });
@@ -59,6 +68,7 @@ $(document).ready(function () {
                         const prezzo = document.createElement("h2");
                         const accettaCorsa = document.createElement("button");
 
+
                         //prezzo
                         prezzo.textContent = prenotazione.prezzo + " CHF";
 
@@ -71,13 +81,14 @@ $(document).ready(function () {
                         tragitto.setAttribute("align", "right");
 
 
+
                         //name
-                        name.textContent = cliente.firstName + " " + cliente.lastName;
+                        name.textContent = cliente.firstName + " " + cliente.lastName + ", ID: " + prenotazione.id_cliente;
 
 
                         //inAttesa � in style, per modificare la grafica delle richieste in attesa per favore utilizzare solo quello
                         richiesta.setAttribute("class", "inAttesa");
-                        richiesta.appendChild(name);
+                        richiesta.appendChild(name);                        
                         richiesta.appendChild(document.createElement("br"));
                         richiesta.appendChild(tragitto);
                         richiesta.appendChild(prezzo);
@@ -89,9 +100,46 @@ $(document).ready(function () {
 });
 
 
-function accettaCorsa() {
-    alert("corsa accettata");
+function termina(){
+    // Selezioniamo il pulsante che è stato cliccato
+    const accettaCorsaButton = event.target;
+
+    // Selezioniamo la sezione che contiene le informazioni della corsa
+    const richiesta = accettaCorsaButton.closest('section');
+
+    // Otteniamo le informazioni dalla sezione
+    const nomeCliente = richiesta.querySelector('h2:first-of-type').textContent;
+    const tragitto = richiesta.querySelector('h2:nth-of-type(2)').textContent;
+
+    //cambio l'id del tassista nel json cosi che il tassista acquisisce la corsa
+    var idCliente =  nomeCliente.substring(nomeCliente.length, nomeCliente.length-1);; 
+    window.location = 'taxiUC?userData=' + encodeURIComponent(JSON.stringify(userData)) + '&id_cliente=' + idCliente + '&terminata=' + true;
+    
+    // Alert con le informazioni
+    alert(`Corsa accettata: ${nomeCliente} - ${tragitto}  - ${idCliente}`);
 }
+
+
+function accettaCorsa() {
+    // Selezioniamo il pulsante che è stato cliccato
+    const accettaCorsaButton = event.target;
+
+    // Selezioniamo la sezione che contiene le informazioni della corsa
+    const richiesta = accettaCorsaButton.closest('section');
+
+    // Otteniamo le informazioni dalla sezione
+    const nomeCliente = richiesta.querySelector('h2:first-of-type').textContent;
+    const tragitto = richiesta.querySelector('h2:nth-of-type(2)').textContent;
+
+    //cambio l'id del tassista nel json cosi che il tassista acquisisce la corsa
+    var idCliente =  nomeCliente.substring(nomeCliente.length, nomeCliente.length-1);; 
+    window.location = 'taxiUC?userData=' + encodeURIComponent(JSON.stringify(userData)) + '&id_cliente=' + idCliente;
+    
+    // Alert con le informazioni
+    alert(`Corsa accettata: ${nomeCliente} - ${tragitto}  - ${idCliente}`);
+}
+
+
 
 $(document).ready(function () {
     // Otteniamo il nome e il cognome dall'oggetto userData

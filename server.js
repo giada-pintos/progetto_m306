@@ -131,6 +131,83 @@ app.get('/taxiUC', (req, res) => {
 
     //Inizializzo utente loggato
     const userData = JSON.parse(req.query.userData);
+    const termina = req.query.terminata;
+
+
+    //capire se sta terminando la corsa oppure la sta iniziando
+    if (termina === undefined) {
+        try {
+            const idCliente = req.query.id_cliente;
+
+            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+                // Parsa il file JSON
+                const prenotazioni = JSON.parse(data);
+
+                // Cerca e modifica l'id_tassista in base all'userId di userData
+                prenotazioni.prenotazioni.forEach(prenotazione => {
+                    if (prenotazione.id_cliente == idCliente) {
+                        prenotazione.id_tassista = userData.userId;
+                    }
+                });
+
+                // Scrivi le modifiche nel file JSON
+                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    console.log('Modifiche al file JSON salvate correttamente');
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    else {
+        try {
+            const idCliente = req.query.id_cliente;
+
+            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+                // Parsa il file JSON
+                const prenotazioni = JSON.parse(data);
+
+                // Cerca e modifica l'id_tassista in base all'userId di userData
+                prenotazioni.prenotazioni.forEach(prenotazione => {
+                    if (prenotazione.id_cliente == idCliente) {
+                        prenotazione.id_tassista = userData.userId;
+                        prenotazione.terminata = termina;
+
+                    }
+                });
+
+                // Scrivi le modifiche nel file JSON
+                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    console.log('Modifiche al file JSON salvate correttamente');
+                });
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
 
     // leggere il contenuto del file
     fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
