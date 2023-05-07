@@ -163,6 +163,7 @@ app.get('/clientiUC', (req, res) => {
 
 
     res.header('Content-Type', 'text/html');
+    if(req.query.prenotazione == undefined){
     res.write(`
     <!DOCTYPE html>
     <html>
@@ -187,7 +188,7 @@ app.get('/clientiUC', (req, res) => {
                 <section class="content mt-3 justify-content-center text-center">
                     <h3>Inserisci i seguenti dati:</h3>
                     <div class="block p-2 mt-2">
-                    <div class="container">
+                    <div class="container" id="contenuto">
                         <div class="row">
                             <div class="col-6">
                                 <label for="start" class="h4">Posizione di partenza:</label><br />
@@ -204,11 +205,6 @@ app.get('/clientiUC', (req, res) => {
                                 <div id="indicazioni"></div>
                                 <div id="availableTaxi"></div>
                             </div>    
-                        </div>
-                    </div>
-                    <div class="block">
-                        <div>
-                            <h1>La tua corsa è stata accettata, il tassista ti contatterà a breve</h1>
                         </div>
                     </div>
 
@@ -236,7 +232,41 @@ app.get('/clientiUC', (req, res) => {
     
     </html>
     `)
+    }else{
+        res.write(`
+        <html>
+          <head>
+            <title>Your request</title>
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/menu.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          </head>
+          <body onload="startUp()">
+            <!--MENU-->
+            <div id="containerMenu"></div>
+            <section class="content">
+                <h2 id="nome_cognome"></h2>
+              <div>
+                <h3>Richieste - In corso</h3>
+              </div>
+              <div id="inCorso"></div>
+            </section>
+        
+            <!--SCRIPT-->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript" src="/js/menu.js"></script>
+            <script type="text/javascript" src="/js/taxiUC_disponibilita_accettaCorsa_prenotazioniFiltrate.js"></script>
+            <script type="text/javascript" src="/js/onload_index.js"></script>
+            <script type="text/javascript">
+    
+            </script>
+          </body>
+        </html>
+      `);    
+    }
     res.end();
+
 
 
     try {
