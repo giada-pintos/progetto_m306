@@ -1,4 +1,3 @@
-
 //menu apposito per il tipo di cliente che sei
 var link = "login";
 var account = "";
@@ -6,19 +5,17 @@ try {
     var userData = JSON.parse(localStorage.getItem('userData'));
     if (userData.isTaxi === true) {
         account = "Taxi";
-        link = "taxiUC";
+        link = 'taxiUC?userData=' + encodeURIComponent(JSON.stringify(userData));
     }
     else if (userData.isTaxi === false) {
         account = "Cliente";
-        link = "clientiUC";
+        link = 'clientiUC?userData=' + encodeURIComponent(JSON.stringify(userData));
     }
 }
 catch (ex) {
     link = "login";
     account = "Login";
 }
-
-
 
 
 

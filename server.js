@@ -5,13 +5,10 @@ const path = require('path');
 const app = express();
 
 
-
-
-
 // Serve i file statici nella cartella public
 app.use(express.static('src'));
 
-// Crea una route index
+
 app.get('/index', (req, res) => {
 
     res.header('Content-Type', 'text/html');
@@ -86,6 +83,8 @@ app.get('/index', (req, res) => {
 
 
 app.get('/taxiUC', (req, res) => {
+
+
     res.header('Content-Type', 'text/html');
     res.write(`
     <html>
@@ -123,21 +122,6 @@ app.get('/taxiUC', (req, res) => {
         <script type="text/javascript" src="/js/taxiUC_disponibilita_accettaCorsa_prenotazioniFiltrate.js"></script>
         <script type="text/javascript" src="/js/onload_index.js"></script>
         <script type="text/javascript">
-            var userData = JSON.parse(localStorage.getItem('userData'));
-            console.log(userData);
-
-            $("#myStatus").change(function () {
-                var status = ($(this).is(":checked")) ? 1 : 0;
-                userData.status = status;
-                console.log(userData);
-
-                // rendi il div #inAttesa visibile o lo nascondi
-                if (userData.status == 1) {
-                    $("#inAttesa").show();
-                } else {
-                    $("#inAttesa").hide();
-                }
-            });
 
         </script>
       </body>
@@ -146,19 +130,19 @@ app.get('/taxiUC', (req, res) => {
     res.end();
 
     //Inizializzo utente loggato
-    var userData = JSON.parse(localStorage.getItem('userData'));
+    const userData = JSON.parse(req.query.userData);
 
     // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, '/data.json'), 'utf8', (err, data) => {
+    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
         if (err) throw err;
 
         // convertire il contenuto in un oggetto
         const obj = JSON.parse(data);
 
-        // trovare l'utente con userId 1 e modificare lo status
+        // trovare l'utente con userId loggato e modificare lo status
         obj.users.forEach(user => {
-            if (user.userId === userData.id) {
-                user.status = 0;
+            if (user.userId === userData.userId) {
+                user.status = userData.status;
             }
         });
 
@@ -166,16 +150,12 @@ app.get('/taxiUC', (req, res) => {
         const json = JSON.stringify(obj);
 
         // scrivere la stringa JSON nel file
-        fs.writeFile(path.join(__dirname, '/data.json'), json, 'utf8', (err) => {
+        fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
             if (err) throw err;
             console.log('Status modificato');
         });
     });
-
-
 });
-
-
 
 
 
@@ -233,6 +213,9 @@ app.get('/clientiUC', (req, res) => {
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
             async></script>
     
+
+
+
         <!--SCRIPT-->
         <script src="/js/clientiUC_maps_availability_indicazioni.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -244,6 +227,8 @@ app.get('/clientiUC', (req, res) => {
     </html>
     `)
     res.end();
+
+
 });
 
 

@@ -117,12 +117,16 @@ $(document).ready(function () {
         localStorage.setItem("userData", JSON.stringify(userData));
 
 
+
         // rendi il div #inAttesa visibile o lo nascondi
         if (userData.status == 1) {
             $("#inAttesa").show();
         } else {
             $("#inAttesa").hide();
         }
+
+        window.location = 'taxiUC?userData=' + JSON.stringify(userData);
+
     });
 });
 

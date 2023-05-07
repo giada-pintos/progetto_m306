@@ -152,6 +152,9 @@ function prenota() {
         // Converti l'oggetto prenotazione in una stringa JSON
         const prenotazioneJSON = JSON.stringify(prenotazione);
 
+        window.location = 'clientiUC?prenotazione=' + prenotazioneJSON;
+
+
         // Fai qualcosa con la stringa JSON, ad esempio inviala al server
         console.log(prenotazioneJSON);
 
