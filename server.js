@@ -56,8 +56,8 @@ app.get('/index', (req, res) => {
                             <h3>Link utili:</h3>
                             <ul>
                                 <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
-                                <li><a href="#">Presentation PowerPoint</a></li>
-                                <li><a href="#">Documentazione</a></li>
+                                <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
+                                <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
                             </ul>
                         </div>
                     </div>
@@ -252,6 +252,33 @@ app.get('/clientiUC', (req, res) => {
               </div>
               <div id="inCorso"></div>
             </section>
+            <footer class="fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-4">
+                        <h3>Autori del progetto:</h3>
+                        <ul>
+                            <li>Abdu</li>
+                            <li>Daniel</li>
+                            <li>Giada</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-3">
+                        <h3 class="text-center">Scuola:</h3>
+                        <p>CPT Locarno</p>
+                        <p>I3a - Sviluppatori</p>
+                    </div>
+                    <div class="col-md-4 col-5">
+                        <h3>Link utili:</h3>
+                        <ul>
+                            <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                            <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
+                                <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
         
             <!--SCRIPT-->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -360,8 +387,8 @@ app.get('/login', (req, res) => {
                         <h3>Link utili:</h3>
                         <ul>
                             <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
-                            <li><a href="#">Presentation PowerPoint</a></li>
-                            <li><a href="#">Documentazione</a></li>
+                            <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
+                                <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
                         </ul>
                     </div>
                 </div>
@@ -465,8 +492,8 @@ app.get('/register', (req, res) => {
                         <h3>Link utili:</h3>
                         <ul>
                             <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
-                            <li><a href="#">Presentation PowerPoint</a></li>
-                            <li><a href="#">Documentazione</a></li>
+                            <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
+                            <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
                         </ul>
                     </div>
                 </div>
