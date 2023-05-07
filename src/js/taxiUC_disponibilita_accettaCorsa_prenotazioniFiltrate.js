@@ -51,7 +51,6 @@ $(document).ready(function () {
                     const prenotazioniFiltrateDisponibili = prenotazioni.prenotazioni.filter(prenotazione => prenotazione.terminata === false && prenotazione.id_tassista === null);
                     prenotazioniFiltrateDisponibili.forEach(prenotazione => {
                         const cliente = clienti.find(c => c.userId === prenotazione.id_cliente);
-                        console.log("Prenotazione ID: " + prenotazione.id_cliente + ", Nome: " + cliente.firstName + ", Cognome: " + cliente.lastName);
 
                         //creazione di una sezione per ogni corsa disponibile
                         var richiesta = document.createElement("section");

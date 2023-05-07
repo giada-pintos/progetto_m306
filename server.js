@@ -160,6 +160,8 @@ app.get('/taxiUC', (req, res) => {
 
 
 app.get('/clientiUC', (req, res) => {
+
+
     res.header('Content-Type', 'text/html');
     res.write(`
     <!DOCTYPE html>
@@ -229,29 +231,37 @@ app.get('/clientiUC', (req, res) => {
     res.end();
 
 
-    // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
-        if (err) throw err;
+    try {
+        //Inizializzo la prenotazione
+        const prenotazione = JSON.parse(req.query.prenotazione);
+        console.log(prenotazione);
 
-        // convertire il contenuto in un oggetto
-        const obj = JSON.parse(data);
-
-        // convertire l'oggetto modificato in una stringa JSON
-        const json = JSON.stringify(obj);
-        let newJson;
-        if (prenotazione.id_cliente == undefined) {
-            newJson = json;
-        } else {
-            const forAdd = json.slice(0, -2);
-            newJson = forAdd.concat(",", prenotazioneJSON, "]}");
-        }
-
-        // scrivere la stringa JSON nel file
-        fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
+        // leggere il contenuto del file
+        fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
             if (err) throw err;
-            console.log('Prenotazione aggiunto');
+
+            // convertire il contenuto in un oggetto
+            const obj = JSON.parse(data);
+
+            // convertire l'oggetto modificato in una stringa JSON
+            const json = JSON.stringify(obj);
+            let newJson;
+            if (prenotazione.id_cliente == undefined) {
+                newJson = json;
+            } else {
+                const forAdd = json.slice(0, -2);
+                newJson = forAdd.concat(",", JSON.stringify(prenotazione), "]}");
+            }
+
+            // scrivere la stringa JSON nel file
+            fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
+                if (err) throw err;
+                console.log('Prenotazione aggiunto');
+            });
         });
-    });
+    }
+    catch (e) {
+    }
 
 
 });

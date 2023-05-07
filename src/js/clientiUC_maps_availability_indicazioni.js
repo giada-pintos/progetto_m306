@@ -137,7 +137,7 @@ function availabilityCheck() {
 function prenota() {
     const metodoPagamento = prompt("Inserisci il metodo di pagamento (es. carta di credito, PayPal):");
     const importo = prezzo; // Importo simulato da pagare
-    const confermaPagamento = confirm(`Confermi il pagamento di ${importo}� con ${metodoPagamento}?`);
+    const confermaPagamento = confirm(`Confermi il pagamento di ${importo} CHF con ${metodoPagamento}?`);
 
     if (confermaPagamento) {
         const prenotazione = {
@@ -147,13 +147,13 @@ function prenota() {
             end: end,
             prezzo: prezzo,
             metodoPagamento: metodoPagamento,
+            terminata: false
         };
 
         // Converti l'oggetto prenotazione in una stringa JSON
         const prenotazioneJSON = JSON.stringify(prenotazione);
 
         window.location = 'clientiUC?prenotazione=' + prenotazioneJSON;
-
 
         // Fai qualcosa con la stringa JSON, ad esempio inviala al server
         console.log(prenotazioneJSON);
