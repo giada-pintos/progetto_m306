@@ -84,8 +84,12 @@ app.get('/index', (req, res) => {
 
 app.get('/taxiUC', (req, res) => {
 
-    const userData = JSON.parse(req.query.userData);
-
+    try{
+        const userData = JSON.parse(req.query.userData);
+    }catch{
+        res.redirect("/index");
+    }
+    
     if(userData.isTaxi){
         res.header('Content-Type', 'text/html');
         res.write(`
@@ -246,7 +250,12 @@ app.get('/clientiUC', (req, res) => {
     
         res.header('Content-Type', 'text/html');
         if(req.query.prenotazione == undefined){
-            const userData = JSON.parse(req.query.userData);
+            try{
+                const userData = JSON.parse(req.query.userData);
+            }catch{
+                res.redirect("/index");
+            }
+            
             if(userData.isTaxi){
                 res.redirect("/taxiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
             }else{
