@@ -17,26 +17,26 @@ app.get('/index', (req, res) => {
     <html>
         <head>
             <title>Taxi App</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
             <link rel="stylesheet" href="/css/style.css">
             <link rel="stylesheet" href="/css/menu.css">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         </head>
         <body onload="startUp()">
             <!--MENU-->
             <div id="containerMenu"></div>
 
-            <section class="content">
+            <section class="content mx-1">
                 <h1>Progetto m306 "The taxi app"<img src="/img/taxi_logo.png" width="50px" height="50px" /></h1>
                 <div class="block">
                     <p>Siamo un gruppo di giovani studenti della CPT di Locarno</p>
                     <div class="d-flex justify-content-center">
-                    <button onclick="window.location.href = 'login';" class="log">Login</button>
-                    <button onclick="window.location.href = 'register';" class="reg">Sign up</button>
+                    <button onclick="window.location.href = 'login';" class="log shadow">Login</button>
+                    <button onclick="window.location.href = 'register';" class="reg shadow">Sign up</button>
                     </div>
                 </div>
             </section>
 
-            <footer class="fixed-bottom">
+            <footer class="mx-1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-4">
@@ -92,10 +92,10 @@ app.get('/taxiUC', (req, res) => {
         <html>
         <head>
             <title>Taxi</title>
-            <link rel="stylesheet" href="/css/style.css">
-            <link rel="stylesheet" href="/css/menu.css">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/css/menu.css">
         </head>
         <body onload="startUp()">
             <!--MENU-->
@@ -257,10 +257,11 @@ app.get('/clientiUC', (req, res) => {
                 <head>
                     <title>Taxi</title>
                     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-                    <link rel="stylesheet" href="/css/style.css">
-                    <link rel="stylesheet" href="/css/menu.css">
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
                         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                    <link rel="stylesheet" href="/css/style.css">
+                    <link rel="stylesheet" href="/css/menu.css">
+                    
                 
                 
                 </head>
@@ -325,10 +326,10 @@ app.get('/clientiUC', (req, res) => {
             <html>
             <head>
                 <title>Your request</title>
-                <link rel="stylesheet" href="/css/style.css">
-                <link rel="stylesheet" href="/css/menu.css">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
                     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                <link rel="stylesheet" href="/css/style.css">
+                <link rel="stylesheet" href="/css/menu.css">
             </head>
             <body onload="startUp()">
                 <!--MENU-->
@@ -430,10 +431,11 @@ app.get('/login', (req, res) => {
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/menu.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    
 
 </head>
 
@@ -487,10 +489,11 @@ app.get('/login', (req, res) => {
 
     <!--SCRIPT-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/js/menu.js"></script>
     <script type="module" src="/js/login_checker.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+   
 
 
 
@@ -524,10 +527,11 @@ app.get('/register', (req, res) => {
     <head>
         <title>Registration</title>
         <meta name="viewport" content="width=device-width, initial-scale=0.8">
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/menu.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/menu.css">
+        
     </head>
     <body>
    

@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+
+}
 body {
     justify-content: center;
     align-content: center;
@@ -5,29 +9,32 @@ body {
     align-self: center;
     justify-items: center;
     align-items: center;
-    margin: 0px auto;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 0px;
 }
 
 section {
-    width: 100%;
     margin-top: 10px;
     background-color: #21272b;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 footer {
+    position:absolute;
+    bottom:0;
+    left: 10px;
+    width: calc(100vw - 30px);
     background-color: #21272b;
-    border-radius: 25px;
-    left: 0;
-    bottom: 0;
+    padding-top: 5px;
+    border-radius: 15px 15px 0 0;
 }
 
 h1 {
     margin-right: 10px;
     margin-left: 10px;
     text-align: center;
-    color: #84a98c;
+    color: #7d73d2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
 }
@@ -41,7 +48,7 @@ h2 {
 h3 {
     margin-right: 10px;
     margin-left: 10px;
-    color: #cad2c5;
+    color: #7d73d2;
     font-size: 15pt !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -50,32 +57,34 @@ p {
     margin-right: 10px;
     margin-left: 10px;
     text-align: center;
-    color: #354f52;
+    color: #7d73d2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 footer p {
     margin-right: 10px;
-    color: #84a98c;
+    color: #7d73d2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 li,
 li a {
     margin-right: 10px;
-    color: #84a98c;
+    color: #7d73d2;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .block {
-    background-color: #cad2c5;
-    border-radius: 25px;
+    background-color: #c4c8d6;
+    border-radius: 15px;
+    margin-left:20px;
+    margin-right:20px;
 }
 
 .block button {
     margin-top: 15px;
     margin-bottom: 50px;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .flex {
@@ -83,8 +92,7 @@ li a {
 }
 
 .content {
-    width: 100%;
-    position: absolute;
+    width: 99%;
     margin-top: 25px;
     padding-bottom: 25px;
     top: 65px;
@@ -93,7 +101,7 @@ li a {
 .availableTaxi {
     width: 100%;
     margin-top: 20px;
-    background-color: #cad2c5;
+    background-color: #7d73d2;
     border-radius: 25px;
     top: 65px;
 }
@@ -101,7 +109,7 @@ li a {
 .inCorso {
     width: 100%;
     margin-top: 20px;
-    background-color: #cad2c5;
+    background-color: #c4c8d6;
     border-radius: 25px;
     top: 65px;
 }
@@ -110,7 +118,7 @@ li a {
     width: 96%;
     margin-left:20px;
     margin-top: 40px;
-    background-color: #cad2c5;
+    background-color: #c4c8d6;
     border-radius: 25px;
     top: 65px;
 }
@@ -124,28 +132,26 @@ button {
     margin: 10px 10px;
     width: 200px;
     padding: 10px 0;
-    box-shadow: 0 0 20px #2f3e46;
     transition: 0.4s;
 }
 
 button:hover {
     color: white;
     width: 200px;
-    box-shadow: 0 0 20px #2f3e46;
-    background-color: #2f3e46;
+    background-color: #7d73d2;
 }
 
 .reg {
     align-items: center;
     color: white;
-    background-color: #21272b;
+    background-color: #7d73d2;
 }
 
 .log {
     align-items: center;
-    color: #2f3e46;
+    color: #7d73d2;
     background-color: rgba(255, 255, 255, 1);
-    border: 1px solid #2f3e46;
+    border: 1px solid #7d73d2;
 }
 
 #nome_cognome {

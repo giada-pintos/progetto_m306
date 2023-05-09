@@ -1,13 +1,1 @@
-{
-    "prenotazioni": [
-        {
-            "id_cliente": 4,
-            "id_tassista": null,
-            "start": "Como",
-            "end": "Milano",
-            "prezzo": 25,
-            "metodoPagamento": "Contanti",
-            "terminata": false
-        }
-    ]
-}
+{"prenotazioni":[{"id_cliente":4,"id_tassista":1,"start":"Como","end":"Milano","prezzo":25,"metodoPagamento":"Contanti","terminata":"true"}]}

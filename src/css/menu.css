@@ -4,14 +4,12 @@
 
 .navT {
     margin-bottom: 20px;
-    border-radius: 25px;
+    border-radius:0 0 15px 15px ;
     -webkit-transition: all 0.25s;
-    z-index: 111;
     cursor: pointer;
-    width: 100%;
+    width: 99%;
     background: #21272b;
     height: 65px;
-    position: fixed;
 }
 
     .navT .icon {
@@ -120,7 +118,7 @@
         width: 100%;
         background: #21272b;
         border-bottom: 1px solid #21272b;
-        border-radius: 25px;
+        border-radius: 15px;
     }
 
 #bar {
