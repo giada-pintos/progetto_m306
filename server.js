@@ -351,7 +351,7 @@ app.get('/clientiUC', (req, res) => {
                 </div>
                 <div id="inCorso"></div>
                 </section>
-                <footer class="fixed-bottom">
+                <footer class="mx-1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-4">
@@ -467,7 +467,7 @@ app.get('/login', (req, res) => {
                 </div>
             </section>
 
-            <footer class="fixed-bottom">
+            <footer class="mx-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-4">
@@ -574,7 +574,7 @@ app.get('/register', (req, res) => {
                         </form>
                     </div>
                 </section>
-            <footer class="fixed-bottom">
+            <footer class="mx-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-4">
