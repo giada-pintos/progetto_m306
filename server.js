@@ -84,279 +84,39 @@ app.get('/index', (req, res) => {
 
 app.get('/taxiUC', (req, res) => {
 
-
-    res.header('Content-Type', 'text/html');
-    res.write(`
-    <html>
-      <head>
-        <title>Taxi</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/menu.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      </head>
-      <body onload="startUp()">
-        <!--MENU-->
-        <div id="containerMenu"></div>
-        <section class="content">
-          <div id="nome_cognome_disponibilita">
-            <h2 id="nome_cognome"></h2>
-            <label class="switch">
-              <input type="checkbox" id="myStatus">
-              <span class="slider round"></span>
-            </label>
-          </div>
-          <div>
-            <h3>Richieste - In corso</h3>
-          </div>
-          <div id="inCorso"></div>
-          <div>
-            <h3>Richieste - In sospeso</h3>
-          </div>
-          <div id="inAttesa"></div>
-        </section>
-    
-        <!--SCRIPT-->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="/js/menu.js"></script>
-        <script type="text/javascript" src="/js/taxiUC_disponibilita_accettaCorsa_prenotazioniFiltrate.js"></script>
-        <script type="text/javascript" src="/js/onload_index.js"></script>
-        <script type="text/javascript">
-
-        </script>
-      </body>
-    </html>
-  `);
-    res.end();
-
-    //Inizializzo utente loggato
     const userData = JSON.parse(req.query.userData);
-    const termina = req.query.terminata;
 
-
-    //capire se sta terminando la corsa oppure la sta iniziando
-    if (termina === undefined) {
-        try {
-            const idCliente = req.query.id_cliente;
-
-            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-
-                // Parsa il file JSON
-                const prenotazioni = JSON.parse(data);
-
-                // Cerca e modifica l'id_tassista in base all'userId di userData
-                prenotazioni.prenotazioni.forEach(prenotazione => {
-                    if (prenotazione.id_cliente == idCliente) {
-                        prenotazione.id_tassista = userData.userId;
-                    }
-                });
-
-                // Scrivi le modifiche nel file JSON
-                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-
-                    console.log('Modifiche al file JSON salvate correttamente');
-                });
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    else {
-        try {
-            const idCliente = req.query.id_cliente;
-
-            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-
-                // Parsa il file JSON
-                const prenotazioni = JSON.parse(data);
-
-                // Cerca e modifica l'id_tassista in base all'userId di userData
-                prenotazioni.prenotazioni.forEach(prenotazione => {
-                    if (prenotazione.id_cliente == idCliente) {
-                        prenotazione.id_tassista = userData.userId;
-                        prenotazione.terminata = termina;
-
-                    }
-                });
-
-                // Scrivi le modifiche nel file JSON
-                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-
-                    console.log('Modifiche al file JSON salvate correttamente');
-                });
-            });
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-
-
-    // leggere il contenuto del file
-    fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
-        if (err) throw err;
-
-        // convertire il contenuto in un oggetto
-        const obj = JSON.parse(data);
-
-        // trovare l'utente con userId loggato e modificare lo status
-        obj.users.forEach(user => {
-            if (user.userId === userData.userId) {
-                user.status = userData.status;
-            }
-        });
-
-        // convertire l'oggetto modificato in una stringa JSON
-        const json = JSON.stringify(obj);
-
-        // scrivere la stringa JSON nel file
-        fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
-            if (err) throw err;
-            console.log('Status modificato');
-        });
-    });
-});
-
-
-
-app.get('/clientiUC', (req, res) => {
-
-
-    res.header('Content-Type', 'text/html');
-    if(req.query.prenotazione == undefined){
-    res.write(`
-    <!DOCTYPE html>
-    <html>
-    
-    <head>
-        <title>Taxi</title>
-        <meta name="viewport" content="width=device-width, initial-scale=0.8">
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/menu.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    
-    </head>
-    
-    <body onload="startUp()">
-        
-            
-                <!--MENU-->
-                <div class="col-sm-12" id="containerMenu"></div>
-    
-                <section class="content mt-3 justify-content-center text-center">
-                    <h3>Inserisci i seguenti dati:</h3>
-                    <div class="block p-2 mt-2">
-                    <div class="container" id="contenuto">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="start" class="h4">Posizione di partenza:</label><br />
-                                <input type="text" id="start" placeholder="Inserisci la posizione di partenza"> /
-                                <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
-                                <label for="end" class="h4">Destinazione:</label><br />
-                                <input type="text" id="end" placeholder="Inserisci la destinazione">
-                                <br><br>
-                                <button onclick="calcolaIndicazioni()">Invia</button>
-                                <br><br>
-                            </div>
-                            <div class="col-6">
-                                <div class="block mt-2" id="map"></div>
-                                <div id="indicazioni"></div>
-                                <div id="availableTaxi"></div>
-                            </div>    
-                        </div>
-                    </div>
-
-                    </diV>
-
-                    
-                </section>
-                
-    
-        <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
-            async></script>
-    
-
-
-
-        <!--SCRIPT-->
-        <script src="/js/clientiUC_maps_availability_indicazioni.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="/js/menu.js"></script>
-        <script type="text/javascript" src="/js/onload_index.js"></script>
-    
-    </body>
-    
-    </html>
-    `)
-    }else{
+    if(userData.isTaxi){
+        res.header('Content-Type', 'text/html');
         res.write(`
         <html>
-          <head>
-            <title>Your request</title>
+        <head>
+            <title>Taxi</title>
             <link rel="stylesheet" href="/css/style.css">
             <link rel="stylesheet" href="/css/menu.css">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
                 integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-          </head>
-          <body onload="startUp()">
+        </head>
+        <body onload="startUp()">
             <!--MENU-->
             <div id="containerMenu"></div>
             <section class="content">
+            <div id="nome_cognome_disponibilita">
                 <h2 id="nome_cognome"></h2>
-              <div>
-                <h3>Prenotazione - In corso</h3>
-                <h3>Sarai contattato da un taxista appena possibile</h3>
-              </div>
-              <div id="inCorso"></div>
-            </section>
-            <footer class="fixed-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-4">
-                        <h3>Autori del progetto:</h3>
-                        <ul>
-                            <li>Abdu</li>
-                            <li>Daniel</li>
-                            <li>Giada</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-3">
-                        <h3 class="text-center">Scuola:</h3>
-                        <p>CPT Locarno</p>
-                        <p>I3a - Sviluppatori</p>
-                    </div>
-                    <div class="col-md-4 col-5">
-                        <h3>Link utili:</h3>
-                        <ul>
-                            <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
-                            <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
-                                <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <label class="switch">
+                <input type="checkbox" id="myStatus">
+                <span class="slider round"></span>
+                </label>
             </div>
-        </footer>
+            <div>
+                <h3>Richieste - In corso</h3>
+            </div>
+            <div id="inCorso"></div>
+            <div>
+                <h3>Richieste - In sospeso</h3>
+            </div>
+            <div id="inAttesa"></div>
+            </section>
         
             <!--SCRIPT-->
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -364,47 +124,298 @@ app.get('/clientiUC', (req, res) => {
             <script type="text/javascript" src="/js/taxiUC_disponibilita_accettaCorsa_prenotazioniFiltrate.js"></script>
             <script type="text/javascript" src="/js/onload_index.js"></script>
             <script type="text/javascript">
-    
+
             </script>
-          </body>
+        </body>
         </html>
-      `);    
-    }
-    res.end();
+    `);
+        res.end();
+
+        //Inizializzo utente loggato
+        
+        const termina = req.query.terminata;
 
 
+        //capire se sta terminando la corsa oppure la sta iniziando
+        if (termina === undefined) {
+            try {
+                const idCliente = req.query.id_cliente;
 
-    try {
-        //Inizializzo la prenotazione
-        const prenotazione = JSON.parse(req.query.prenotazione);
-        console.log(prenotazione);
+                fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    // Parsa il file JSON
+                    const prenotazioni = JSON.parse(data);
+
+                    // Cerca e modifica l'id_tassista in base all'userId di userData
+                    prenotazioni.prenotazioni.forEach(prenotazione => {
+                        if (prenotazione.id_cliente == idCliente) {
+                            prenotazione.id_tassista = userData.userId;
+                        }
+                    });
+
+                    // Scrivi le modifiche nel file JSON
+                    fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+
+                        console.log('Modifiche al file JSON salvate correttamente');
+                    });
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+        else {
+            try {
+                const idCliente = req.query.id_cliente;
+
+                fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    // Parsa il file JSON
+                    const prenotazioni = JSON.parse(data);
+
+                    // Cerca e modifica l'id_tassista in base all'userId di userData
+                    prenotazioni.prenotazioni.forEach(prenotazione => {
+                        if (prenotazione.id_cliente == idCliente) {
+                            prenotazione.id_tassista = userData.userId;
+                            prenotazione.terminata = termina;
+
+                        }
+                    });
+
+                    // Scrivi le modifiche nel file JSON
+                    fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+
+                        console.log('Modifiche al file JSON salvate correttamente');
+                    });
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
+
 
         // leggere il contenuto del file
-        fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+        fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
             if (err) throw err;
 
             // convertire il contenuto in un oggetto
             const obj = JSON.parse(data);
 
+            // trovare l'utente con userId loggato e modificare lo status
+            obj.users.forEach(user => {
+                if (user.userId === userData.userId) {
+                    user.status = userData.status;
+                }
+            });
+
             // convertire l'oggetto modificato in una stringa JSON
             const json = JSON.stringify(obj);
-            let newJson;
-            if (prenotazione.id_cliente == undefined) {
-                newJson = json;
-            } else {
-                const forAdd = json.slice(0, -2);
-                newJson = forAdd.concat(",", JSON.stringify(prenotazione), "]}");
-            }
 
             // scrivere la stringa JSON nel file
-            fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
+            fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
                 if (err) throw err;
-                console.log('Prenotazione aggiunto');
+                console.log('Status modificato');
             });
         });
+    }else{
+        res.redirect("/clientiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
     }
-    catch (e) {
-    }
+    
+});
+
+
+
+app.get('/clientiUC', (req, res) => {
+    
+        res.header('Content-Type', 'text/html');
+        if(req.query.prenotazione == undefined){
+            const userData = JSON.parse(req.query.userData);
+            if(userData.isTaxi){
+                res.redirect("/taxiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
+            }else{
+                res.write(`
+                <!DOCTYPE html>
+                <html>
+                
+                <head>
+                    <title>Taxi</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+                    <link rel="stylesheet" href="/css/style.css">
+                    <link rel="stylesheet" href="/css/menu.css">
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                
+                
+                </head>
+                
+                <body onload="startUp()">
+                    
+                        
+                            <!--MENU-->
+                            <div class="col-sm-12" id="containerMenu"></div>
+                
+                            <section class="content mt-3 justify-content-center text-center">
+                                <h3>Inserisci i seguenti dati:</h3>
+                                <div class="block p-2 mt-2">
+                                <div class="container" id="contenuto">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="start" class="h4">Posizione di partenza:</label><br />
+                                            <input type="text" id="start" placeholder="Inserisci la posizione di partenza"> /
+                                            <button onclick="usaPosizioneCorrente()">Mia posizione</button><br />
+                                            <label for="end" class="h4">Destinazione:</label><br />
+                                            <input type="text" id="end" placeholder="Inserisci la destinazione">
+                                            <br><br>
+                                            <button onclick="calcolaIndicazioni()">Invia</button>
+                                            <br><br>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="block mt-2" id="map"></div>
+                                            <div id="indicazioni"></div>
+                                            <div id="availableTaxi"></div>
+                                        </div>    
+                                    </div>
+                                </div>
+
+                                </diV>
+
+                                
+                            </section>
+                            
+                
+                    <!--real key AIzaSyC6vzkzpZK90_Z332xUtnL9rxWZ_es8qHE-->
+                    <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASCBj4N9KGXvIamrcz5oZUlxyOA-L8kWE&callback=initMap&libraries=places"
+                        async></script>
+                
+
+
+
+                    <!--SCRIPT-->
+                    <script src="/js/clientiUC_maps_availability_indicazioni.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script type="text/javascript" src="/js/menu.js"></script>
+                    <script type="type/stylesheets" src="/css/style.css"></script>
+                    <script type="text/javascript" src="/js/onload_index.js"></script>
+                
+                </body>
+                
+                </html>
+                `)
+            }
+        }else{
+            res.write(`
+            <html>
+            <head>
+                <title>Your request</title>
+                <link rel="stylesheet" href="/css/style.css">
+                <link rel="stylesheet" href="/css/menu.css">
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            </head>
+            <body onload="startUp()">
+                <!--MENU-->
+                <div id="containerMenu"></div>
+                <section class="content">
+                    <h2 id="nome_cognome"></h2>
+                <div>
+                    <h3>Prenotazione - In corso</h3>
+                    <h3>Sarai contattato da un taxista appena possibile</h3>
+                </div>
+                <div id="inCorso"></div>
+                </section>
+                <footer class="fixed-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-4">
+                            <h3>Autori del progetto:</h3>
+                            <ul>
+                                <li>Abdu</li>
+                                <li>Daniel</li>
+                                <li>Giada</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-3">
+                            <h3 class="text-center">Scuola:</h3>
+                            <p>CPT Locarno</p>
+                            <p>I3a - Sviluppatori</p>
+                        </div>
+                        <div class="col-md-4 col-5">
+                            <h3>Link utili:</h3>
+                            <ul>
+                                <li><a href="https://developers.google.com/maps/documentation?hl=it">Maps API</a></li>
+                                <li><a href="/document/progettofinale_m306.pptx">Presentatione PowerPoint</a></li>
+                                    <li><a href="/document/documentazione_progetto.docx">Documentazione</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
+                <!--SCRIPT-->
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script type="text/javascript" src="/js/menu.js"></script>
+                <script type="text/javascript" src="/js/taxiUC_disponibilita_accettaCorsa_prenotazioniFiltrate.js"></script>
+                <script type="text/javascript" src="/js/onload_index.js"></script>
+                <script type="text/javascript">
+        
+                </script>
+            </body>
+            </html>
+        `);    
+        }
+        res.end();
+
+
+
+        try {
+            //Inizializzo la prenotazione
+            const prenotazione = JSON.parse(req.query.prenotazione);
+            console.log(prenotazione);
+
+            // leggere il contenuto del file
+            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                if (err) throw err;
+
+                // convertire il contenuto in un oggetto
+                const obj = JSON.parse(data);
+
+                // convertire l'oggetto modificato in una stringa JSON
+                const json = JSON.stringify(obj);
+                let newJson;
+                if (prenotazione.id_cliente == undefined) {
+                    newJson = json;
+                } else {
+                    const forAdd = json.slice(0, -2);
+                    newJson = forAdd.concat(",", JSON.stringify(prenotazione), "]}");
+                }
+
+                // scrivere la stringa JSON nel file
+                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
+                    if (err) throw err;
+                    console.log('Prenotazione aggiunto');
+                });
+            });
+        }
+        catch (e) {
+        }
 
 
 });
