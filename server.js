@@ -84,15 +84,12 @@ app.get('/index', (req, res) => {
 
 app.get('/taxiUC', (req, res) => {
 
-    try{
+    try {
         const userData = JSON.parse(req.query.userData);
-    }catch{
-        res.redirect("/index");
-    }
-    
-    if(userData.isTaxi){
-        res.header('Content-Type', 'text/html');
-        res.write(`
+
+        if (userData.isTaxi) {
+            res.header('Content-Type', 'text/html');
+            res.write(`
         <html>
         <head>
             <title>Taxi</title>
@@ -133,132 +130,130 @@ app.get('/taxiUC', (req, res) => {
         </body>
         </html>
     `);
-        res.end();
+            res.end();
 
-        //Inizializzo utente loggato
-        
-        const termina = req.query.terminata;
+            //Inizializzo utente loggato
+
+            const termina = req.query.terminata;
 
 
-        //capire se sta terminando la corsa oppure la sta iniziando
-        if (termina === undefined) {
-            try {
-                const idCliente = req.query.id_cliente;
+            //capire se sta terminando la corsa oppure la sta iniziando
+            if (termina === undefined) {
+                try {
+                    const idCliente = req.query.id_cliente;
 
-                fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-
-                    // Parsa il file JSON
-                    const prenotazioni = JSON.parse(data);
-
-                    // Cerca e modifica l'id_tassista in base all'userId di userData
-                    prenotazioni.prenotazioni.forEach(prenotazione => {
-                        if (prenotazione.id_cliente == idCliente) {
-                            prenotazione.id_tassista = userData.userId;
-                        }
-                    });
-
-                    // Scrivi le modifiche nel file JSON
-                    fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                    fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
                         if (err) {
                             console.log(err);
                             return;
                         }
 
-                        console.log('Modifiche al file JSON salvate correttamente');
+                        // Parsa il file JSON
+                        const prenotazioni = JSON.parse(data);
+
+                        // Cerca e modifica l'id_tassista in base all'userId di userData
+                        prenotazioni.prenotazioni.forEach(prenotazione => {
+                            if (prenotazione.id_cliente == idCliente) {
+                                prenotazione.id_tassista = userData.userId;
+                            }
+                        });
+
+                        // Scrivi le modifiche nel file JSON
+                        fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+
+                            console.log('Modifiche al file JSON salvate correttamente');
+                        });
                     });
-                });
-            } catch (e) {
-                console.log(e);
-            }
-        }
-
-        else {
-            try {
-                const idCliente = req.query.id_cliente;
-
-                fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    }
-
-                    // Parsa il file JSON
-                    const prenotazioni = JSON.parse(data);
-
-                    // Cerca e modifica l'id_tassista in base all'userId di userData
-                    prenotazioni.prenotazioni.forEach(prenotazione => {
-                        if (prenotazione.id_cliente == idCliente) {
-                            prenotazione.id_tassista = userData.userId;
-                            prenotazione.terminata = termina;
-
-                        }
-                    });
-
-                    // Scrivi le modifiche nel file JSON
-                    fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-
-                        console.log('Modifiche al file JSON salvate correttamente');
-                    });
-                });
-            } catch (e) {
-                console.log(e);
-            }
-        }
-
-
-
-        // leggere il contenuto del file
-        fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
-            if (err) throw err;
-
-            // convertire il contenuto in un oggetto
-            const obj = JSON.parse(data);
-
-            // trovare l'utente con userId loggato e modificare lo status
-            obj.users.forEach(user => {
-                if (user.userId === userData.userId) {
-                    user.status = userData.status;
+                } catch (e) {
+                    console.log(e);
                 }
-            });
+            }
 
-            // convertire l'oggetto modificato in una stringa JSON
-            const json = JSON.stringify(obj);
+            else {
+                try {
+                    const idCliente = req.query.id_cliente;
 
-            // scrivere la stringa JSON nel file
-            fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
+                    fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+
+                        // Parsa il file JSON
+                        const prenotazioni = JSON.parse(data);
+
+                        // Cerca e modifica l'id_tassista in base all'userId di userData
+                        prenotazioni.prenotazioni.forEach(prenotazione => {
+                            if (prenotazione.id_cliente == idCliente) {
+                                prenotazione.id_tassista = userData.userId;
+                                prenotazione.terminata = termina;
+
+                            }
+                        });
+
+                        // Scrivi le modifiche nel file JSON
+                        fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), JSON.stringify(prenotazioni), err => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+
+                            console.log('Modifiche al file JSON salvate correttamente');
+                        });
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+
+
+
+            // leggere il contenuto del file
+            fs.readFile(path.join(__dirname, 'src/data.json'), 'utf8', (err, data) => {
                 if (err) throw err;
-                console.log('Status modificato');
+
+                // convertire il contenuto in un oggetto
+                const obj = JSON.parse(data);
+
+                // trovare l'utente con userId loggato e modificare lo status
+                obj.users.forEach(user => {
+                    if (user.userId === userData.userId) {
+                        user.status = userData.status;
+                    }
+                });
+
+                // convertire l'oggetto modificato in una stringa JSON
+                const json = JSON.stringify(obj);
+
+                // scrivere la stringa JSON nel file
+                fs.writeFile(path.join(__dirname, 'src/data.json'), json, 'utf8', (err) => {
+                    if (err) throw err;
+                    console.log('Status modificato');
+                });
             });
-        });
-    }else{
-        res.redirect("/clientiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
+        } else {
+            res.redirect("/clientiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
+        }
+    } catch {
+        res.redirect("/index");
     }
-    
 });
 
 
 
 app.get('/clientiUC', (req, res) => {
-    
-        res.header('Content-Type', 'text/html');
-        if(req.query.prenotazione == undefined){
-            try{
-                const userData = JSON.parse(req.query.userData);
-            }catch{
-                res.redirect("/index");
-            }
-            
-            if(userData.isTaxi){
+
+    res.header('Content-Type', 'text/html');
+    if (req.query.prenotazione == undefined) {
+        try {
+            const userData = JSON.parse(req.query.userData);
+            if (userData.isTaxi) {
                 res.redirect("/taxiUC?userData=" + encodeURIComponent(JSON.stringify(userData)));
-            }else{
+            } else {
                 res.write(`
                 <!DOCTYPE html>
                 <html>
@@ -330,8 +325,11 @@ app.get('/clientiUC', (req, res) => {
                 </html>
                 `)
             }
-        }else{
-            res.write(`
+        } catch {
+            res.redirect("/index");
+        }
+    } else {
+        res.write(`
             <html>
             <head>
                 <title>Your request</title>
@@ -389,43 +387,43 @@ app.get('/clientiUC', (req, res) => {
                 </script>
             </body>
             </html>
-        `);    
-        }
-        res.end();
+        `);
+    }
+    res.end();
 
 
 
-        try {
-            //Inizializzo la prenotazione
-            const prenotazione = JSON.parse(req.query.prenotazione);
-            console.log(prenotazione);
+    try {
+        //Inizializzo la prenotazione
+        const prenotazione = JSON.parse(req.query.prenotazione);
+        console.log(prenotazione);
 
-            // leggere il contenuto del file
-            fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+        // leggere il contenuto del file
+        fs.readFile(path.join(__dirname, 'src/prenotazioni.json'), 'utf8', (err, data) => {
+            if (err) throw err;
+
+            // convertire il contenuto in un oggetto
+            const obj = JSON.parse(data);
+
+            // convertire l'oggetto modificato in una stringa JSON
+            const json = JSON.stringify(obj);
+            let newJson;
+            if (prenotazione.id_cliente == undefined) {
+                newJson = json;
+            } else {
+                const forAdd = json.slice(0, -2);
+                newJson = forAdd.concat(",", JSON.stringify(prenotazione), "]}");
+            }
+
+            // scrivere la stringa JSON nel file
+            fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
                 if (err) throw err;
-
-                // convertire il contenuto in un oggetto
-                const obj = JSON.parse(data);
-
-                // convertire l'oggetto modificato in una stringa JSON
-                const json = JSON.stringify(obj);
-                let newJson;
-                if (prenotazione.id_cliente == undefined) {
-                    newJson = json;
-                } else {
-                    const forAdd = json.slice(0, -2);
-                    newJson = forAdd.concat(",", JSON.stringify(prenotazione), "]}");
-                }
-
-                // scrivere la stringa JSON nel file
-                fs.writeFile(path.join(__dirname, 'src/prenotazioni.json'), newJson, 'utf8', (err) => {
-                    if (err) throw err;
-                    console.log('Prenotazione aggiunto');
-                });
+                console.log('Prenotazione aggiunto');
             });
-        }
-        catch (e) {
-        }
+        });
+    }
+    catch (e) {
+    }
 
 
 });
